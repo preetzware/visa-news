@@ -30,7 +30,7 @@ ALLOWED_HOSTS = [
     'localhost',
     '8080-preetzware-visanews-dipad6t0gvi.ws.codeinstitute-ide.net',
     '.herokuapp.com',
-    'visa-global-news-3e0847e1af66.herokuapp.com/',
+    'visa-global-news-3e0847e1af66.herokuapp.com',
 ]
 
 
