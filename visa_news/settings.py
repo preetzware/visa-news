@@ -23,10 +23,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-ggcb07f@b0pvms+kqub&90^@(*+s!wd9@ln)1440@t_ow43jep'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
+    '127.0.0.1',
+    'localhost',
     '8080-preetzware-visanews-dipad6t0gvi.ws.codeinstitute-ide.net',
+    'visa-global-news-3e0847e1af66.herokuapp.com/',
     '.herokuapp.com'
 ]
 
