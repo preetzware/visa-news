@@ -33,7 +33,7 @@ DEBUG = False
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
-    '8080-preetzware-visanews-dipad6t0gvi.ws.codeinstitute-ide.net',
+    '8000-preetzware-visanews-dipad6t0gvi.ws.codeinstitute-ide.net',
     '.herokuapp.com',
     'visa-global-news-3e0847e1af66.herokuapp.com',
 ]
