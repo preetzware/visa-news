@@ -14,7 +14,6 @@ class Article(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     category = models.ForeignKey('Category', on_delete=models.SET_NULL, null=True, blank=True, related_name='visa_articles')
     status = models.IntegerField(choices=STATUS, default=0)
-    
     likes = models.ManyToManyField(User, related_name="article_likes", blank=True)
 
     class Meta:
@@ -26,6 +25,9 @@ class Article(models.Model):
     def get_absolute_url(self):
         from django.urls import reverse
         return reverse('article_detail', kwargs={'slug': self.slug})
+
+    def number_of_likes(self):
+        return self.likes.count()    
 
     # Methods to generate social media share URLs
     def get_facebook_share_url(self):
@@ -46,12 +48,12 @@ class Article(models.Model):
 
     def get_share_icon(self):
         # Optional method if you want to return a general share URL or an icon class
-        # Return a URL or a CSS class here for a generic share icon
-        return "icon-class-name"  # Replace with your icon class or logic    
+        return "icon-class-name"  # Replace with your icon class or logic
 
-    class Category(models.Model):
-        name = models.CharField(max_length=100)
-        slug = models.SlugField(max_length=100, unique=True)
+
+class Category(models.Model):
+    name = models.CharField(max_length=100)
+    slug = models.SlugField(max_length=100, unique=True)
 
     def __str__(self):
         return self.name
