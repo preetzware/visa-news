@@ -27,14 +27,7 @@ class Article(models.Model):
         from django.urls import reverse
         return reverse('article_detail', kwargs={'slug': self.slug})
 
-    class Category(models.Model):
-        name = models.CharField(max_length=100)
-        slug = models.SlugField(max_length=100, unique=True)
-
-    def __str__(self):
-        return self.name
-
-     # Methods to generate social media share URLs
+    # Methods to generate social media share URLs
     def get_facebook_share_url(self):
         base_url = "https://www.facebook.com/sharer/sharer.php?u="
         return f"{base_url}{self.get_absolute_url()}"
@@ -55,3 +48,10 @@ class Article(models.Model):
         # Optional method if you want to return a general share URL or an icon class
         # Return a URL or a CSS class here for a generic share icon
         return "icon-class-name"  # Replace with your icon class or logic    
+
+    class Category(models.Model):
+        name = models.CharField(max_length=100)
+        slug = models.SlugField(max_length=100, unique=True)
+
+    def __str__(self):
+        return self.name
