@@ -20,7 +20,7 @@ class Article(models.Model):
         ordering = ['-published_at']
 
     def __str__(self):
-        return self.title
+        return f"{self.title} | written by {self.author}"
 
     def get_absolute_url(self):
         from django.urls import reverse
@@ -57,6 +57,9 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+
+class Meta:
+    verbose_name_plural = "Categories"  # Correct plural form 
 
 
 class Comment(models.Model):
