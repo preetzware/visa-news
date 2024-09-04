@@ -16,10 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from visa_app import views
 
 urlpatterns = [
-    path('', include('visa_app.urls')), 
-    path('visa_app/', include('visa_app.urls')),
+    path('', include('visa_app.urls'), name="visa_app-urls"), 
     path('admin/', admin.site.urls),
 ]
