@@ -6,3 +6,5 @@ from .models import Article
 
 class ArticleList(generic.ListView):
     queryset = Article.objects.all()
+    template_name = "visa_app/index.html"
+    paginate_by = 6
