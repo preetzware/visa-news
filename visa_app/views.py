@@ -1,6 +1,8 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.views import generic
+from .models import Article
 
 # Create your views here.
-def index(request):
-    return HttpResponse("Welcome to Visa Global News!")
+
+class ArticleList(generic.ListView):
+    model = Article
