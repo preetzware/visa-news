@@ -10,10 +10,10 @@
 
 <body>
     <h1>Articles list</h1>
-    {% for post in object_list %}
-    <h2>{{post.title}}</h2>
-    <p>{{post.excerpt}}</p>
-    <p>Author: {{post.author}}</p>
+    {% for article in object_list %}
+    <h2>{{article.title}}</h2>
+    <p>{{article.excerpt}}</p>
+    <p>Author: {{article.author}}</p>
     {% endfor %}
 </body>
 
