@@ -2,8 +2,16 @@ body {
     background-color: #F9FAFC;
 }
 
+.navbar-nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+/* Ensure navbar links are spaced and visible on larger screens */
 .nav-item {
-    margin: 0 15px; /* Adjust space between nav items */
+    margin-right: 20px;
 }
 
 /* Custom navbar background color */
@@ -12,26 +20,21 @@ body {
     z-index: 1030;
 }
 
+/* Main padding to adjust for the fixed navbar */
 main {
-    padding-top: 135px;
+    padding-top: 30px;
 }
 
 /* Logo styling */
 .navbar-logo {
     max-width: 100%;
     height: 80px;
+    margin-right: 5rem;
 }
 
-.navbar-nav {
-    flex: 1;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
-
+/* Navbar links */
 .nav-link {
-    display: block;
-    padding: .5rem 1rem;
+    padding: 0 1rem;
     color: #ffffff;
     text-decoration: none;
     font-weight: bold;
@@ -56,7 +59,11 @@ main {
 }
 
 .subscribe-btn:hover {
-    background-color: #e0a800; /* Darker shade on hover */
+    background-color: #e0a800;
+}
+
+.btn {
+    line-height: 1;
 }
 
 /* Search button styling */
@@ -72,8 +79,41 @@ main {
     background-color: rgba(255, 255, 255, 0.2);
 }
 
-.btn {
-    line-height: 1rem;
+/* Search bar styles */
+#searchBar {
+    padding: 10px 0;
+    margin-top: 10px;
+    width: 50%;
+    display: none;
+}
+
+.collapse.show#searchBar {
+    display: block;
+}
+
+.collapse.show#searchBar {
+   align-self: flex-end;
+}
+
+/* Adjust flex properties if needed */
+.flex-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-shrink-0 {
+    flex-shrink: 0;
+}
+
+/* Adjust search bar input and button */
+#searchBar .form-control {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#searchBar .input-group {
+    width: 100%;
+    margin-top: 10px;
 }
 
 /* mobile view navbar toggler */
@@ -94,9 +134,9 @@ main {
 /* Toggle Button Active State */
 .navbar-toggler:focus,
 .navbar-toggler.collapsed {
-    background-color: rgba(255, 255, 255, 0.1); /* Light background when toggled */
-    border-color: #ffc107; /* Change border color when toggled */
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Add a subtle glow effect */
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: #ffc107;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 .brand {
@@ -247,4 +287,37 @@ main {
 
 .approval {
     color: rgb(222, 146, 168);
+}
+
+/* Navbar links alignment for mobile view (collapsed state) */
+@media (max-width: 991.98px) {
+    .navbar-nav {
+        flex-direction: column; 
+        align-items: flex-start;
+    }
+
+    .nav-link {
+        width: 100%;
+        padding: 1rem;
+        text-align: left;
+    }
+}
+
+/* Ensure the navbar content is aligned properly */
+@media (max-width: 576px) {
+      .navbar-toggler {
+        padding: 0.2rem 0.4rem;
+        font-size: 0.9rem;
+        line-height: 0;
+    }
+
+    .navbar-nav {
+        text-align: center;
+        margin-top: 1rem;
+    }
+
+    .navbar-logo {
+        height: 50px;
+        width: 60%s;
+    }
 }
