@@ -47,7 +47,7 @@ main {
 }
 
 /* Subscribe button styling */
-.subscribe-btn {
+.login-btn {
     background-color: #ffc107; /* Bootstrap warning color */
     color: #fff;
     border: none;
@@ -58,7 +58,7 @@ main {
     font-weight: bold;
 }
 
-.subscribe-btn:hover {
+.login-btn:hover {
     background-color: #e0a800;
 }
 
@@ -289,6 +289,124 @@ main {
     color: rgb(222, 146, 168);
 }
 
+/* Footer Styles */
+.footer .card-title {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #fff;
+}
+
+.footer .card-text {
+    font-size: 0.75rem;
+    color: #ddd;
+}
+
+.footer .fa-lg {
+    font-size: 1.5rem;
+}
+
+.footer .fa-map-marker-alt,
+.footer .fa-phone-alt,
+.footer .fa-envelope,
+.footer .fa-whatsapp {
+    font-size: 1.2rem;
+}
+
+.footer p a {
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+.footer p a:hover {
+    color: #ffc107;
+}
+
+.footer .btn-warning {
+    background-color: #ffc107;
+    color: #fff;
+    border: none;
+    font-weight: bold;
+}
+
+.footer .btn-warning:hover {
+    background-color: #e0a800;
+    color: #fff;
+}
+ 
+/* General Footer Styles */
+.footer {
+    padding: 2rem 0;
+    background-color: #4fa3f3;
+    color: #fff;
+    text-align: center;
+}
+
+.footer-divider {
+    border-top: 1px solid #fff;
+    margin: 1rem 0;
+}
+
+/* Subscribe Section */
+.subscribe-section {
+    margin-bottom: 2rem;
+}
+
+/* Popular Posts Section */
+.popular-posts {
+    margin-bottom: 2rem;
+}
+
+.popular-posts h5 {
+    font-weight: bold;
+}
+
+.popular-post-card {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.popular-post-card img {
+    max-width: 100px;
+    margin-right: 1rem;
+}
+
+/* Our Contact Section */
+.our-contact {
+    margin-bottom: 2rem;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.contact-icon {
+    font-size: 1.5rem;
+    margin-right: 15px;
+}
+
+.contact-text {
+    line-height: 1.5;
+    text-align: left;
+}
+
+/* Social Media Section */
+.social-media {
+    margin: 1rem 0;
+}
+
+.social-icon {
+    font-size: 1.5rem;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+}
+
+.social-icon:hover {
+    color: #ccc;
+}
+
 /* Navbar links alignment for mobile view (collapsed state) */
 @media (max-width: 991.98px) {
     .navbar-nav {
@@ -319,5 +437,21 @@ main {
     .navbar-logo {
         height: 50px;
         width: 60%s;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 767px) {
+    .footer {
+        text-align: left;
+    }
+
+    .popular-post-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .popular-post-card img {
+        margin-bottom: 1rem;
     }
 }
