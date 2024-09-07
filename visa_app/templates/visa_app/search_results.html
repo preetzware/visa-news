@@ -1,0 +1,11 @@
+<h1>Search Results for "{{ query }}"</h1>
+
+{% if results %}
+    <ul>
+        {% for result in results %}
+            <li><a href="{{ result.get_absolute_url }}">{{ result.title }}</a></li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No results found.</p>
+{% endif %}

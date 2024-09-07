@@ -7,7 +7,6 @@
 
 <head>
     <title>{% block title %}VisaGlobal.News{% endblock title %}</title>
-    {% debug %}
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- Google Fonts CSS -->
@@ -28,10 +27,12 @@
 <body class="d-flex flex-column h-100 main-bg">
 
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <nav class="navbar navbar-expand-lg custom-navbar fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'home' %}"><span class="brand">c<span class="red-o">o</span>de<span
-                        class="thin">|star</span></span></a>
+            <a class="navbar-brand" href="{% url 'home' %}">
+                <img src="{% static 'images/visaglobal-logo.png' %}" alt="Website Logo representing globe and air travel" class="navbar-logo img-fluid">
+            </a>
+            <!-- Toggle button for mobile view -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
                 aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -42,14 +43,40 @@
                         <a class="nav-link {% if request.path == home_url %}active{% endif %}" aria-current="page"
                             href="#">Home</a>
                     </li>
-
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Visa News</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Air Travel</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Login/Sign-up</a>
+                    </li>
                 </ul>
-                <span class="navbar-text text-muted">
-                    adventures of a software developer
+                <!-- Right side (Subscribe button and Search icon) -->
+                <span class="navbar-text">
+                    <a href="#" class="btn subscribe-btn">Subscribe</a>
+                <!-- Collapsible Search Icon -->
+                <button class="btn search-btn" type="button" data-bs-toggle="collapse" data-bs-target="#searchBar"
+                    aria-expanded="false" aria-controls="searchBar">
+                    <i class="fas fa-search"></i>
+                </button>
                 </span>
             </div>
         </div>
     </nav>
+    <!-- Search bar collapse -->
+<div class="collapse" id="searchBar">
+    <div class="container">
+        <!-- Search form -->
+        <form action="{% url 'home' %}" method="get">
+            <div class="input-group my-3">
+                <input type="text" class="form-control" placeholder="Search..." name="query">
+                <button class="btn btn-primary" type="submit">Go</button>
+            </div>
+        </form>
+    </div>
+</div>
 
     <main class="flex-shrink-0 main-bg">
 

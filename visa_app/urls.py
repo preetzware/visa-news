@@ -3,4 +3,5 @@ from . import views
 
 urlpatterns = [
     path('', views.ArticleList.as_view(), name='home'),
+    path('search/', views.search_view, name='search'),  # New URL pattern for search
 ]
