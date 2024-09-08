@@ -9,7 +9,6 @@ body {
     justify-content: flex-start;
 }
 
-/* Ensure navbar links are spaced and visible on larger screens */
 .nav-item {
     margin-right: 20px;
 }
@@ -28,7 +27,7 @@ main {
 /* Logo styling */
 .navbar-logo {
     max-width: 100%;
-    height: 80px;
+    height: 90px;
     margin-right: 5rem;
 }
 
@@ -371,42 +370,6 @@ main {
     margin-right: 1rem;
 }
 
-/* Our Contact Section */
-.our-contact {
-    margin-bottom: 2rem;
-}
-
-.contact-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1rem;
-}
-
-.contact-icon {
-    font-size: 1.5rem;
-    margin-right: 15px;
-}
-
-.contact-text {
-    line-height: 1.5;
-    text-align: left;
-}
-
-/* Social Media Section */
-.social-media {
-    margin: 1rem 0;
-}
-
-.social-icon {
-    font-size: 1.5rem;
-    margin: 0 10px;
-    transition: color 0.3s ease;
-}
-
-.social-icon:hover {
-    color: #ccc;
-}
-
 /* Navbar links alignment for mobile view (collapsed state) */
 @media (max-width: 991.98px) {
     .navbar-nav {
@@ -435,8 +398,8 @@ main {
     }
 
     .navbar-logo {
-        height: 50px;
-        width: 60%s;
+        height: 70px;
+        width: 70%;
     }
 }
 
