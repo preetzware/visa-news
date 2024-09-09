@@ -9,7 +9,7 @@ class ArticleList(generic.ListView):
     template_name = "visa_app/index.html"
     paginate_by = 6
 
-def article_detail(request):
+def article_detail(request, slug):
     queryset = Article.objects.filter(status=1)
     article = get_object_or_404(queryset, slug=slug)
     return render(request, "visa_app/article_detail.html", {"article": article},)    

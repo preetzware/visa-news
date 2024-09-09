@@ -17,7 +17,7 @@
                             <!-- 1. Highlighted Category -->
                             <h6 class="text-primary">{{ article.category.name }}</h6> 
                             <!-- 2. Title of the Article in Bold -->
-                            <a href="{% url 'article_detail' post.slug %}" class="article-link">
+                            <a href="{% url 'article_detail' article.slug %}" class="article-link">
                                 <h2 class="card-title">{{ article.title }}</h2>
                             </a>
                             <!-- 3. Image -->
