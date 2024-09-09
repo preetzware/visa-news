@@ -195,7 +195,11 @@ main {
     width: 100%;
 }
 
-
+.masthead-text {
+    background-color: #445261;
+    color: white;
+    position: relative;
+}
 
 .masthead-image {
     position: relative;

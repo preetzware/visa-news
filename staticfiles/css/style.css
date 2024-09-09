@@ -179,7 +179,8 @@ main {
     height: auto;
 }
 
-.author {
+.custom-author {
+    background-color: #3596f0;
     color: white;
     margin: 4px;
     text-transform: uppercase;
@@ -194,11 +195,7 @@ main {
     width: 100%;
 }
 
-.masthead-text {
-    background-color: #445261;
-    color: white;
-    position: relative;
-}
+
 
 .masthead-image {
     position: relative;
@@ -220,13 +217,13 @@ main {
 }
 
 .article-link {
-    text-decoration: none;
+   
     color: #445261;
 }
 
 .article-link:hover,
 .page-link {
-    color: #E84610;
+    color: #4fa3f3;
 }
 
 .article-title {
