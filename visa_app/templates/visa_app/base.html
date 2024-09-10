@@ -54,7 +54,7 @@
                     <a class="nav-link {% if request.path == visa_app_url %}active{% endif %}" href="{{ visa_app_url }}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ visanews_url }}">Visa News</a>
+                    <a class="nav-link" href="{% url 'visanews_list' %}">Visa News</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Air Travel</a>
