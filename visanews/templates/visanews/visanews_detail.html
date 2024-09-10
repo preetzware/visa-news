@@ -1,0 +1,36 @@
+{% extends 'visa_app/base.html' %}
+
+{% block content %}
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="card mb-4">
+                    <!-- Category -->
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="card-title">{{ article.category.name }}</h5>
+                    </div>
+                    <!-- Title -->
+                    <div class="card-body">
+                        <h2 class="card-title">{{ article.title }}</h2>
+                        <!-- Image -->
+                        {% if article.image %}
+                            <img src="{{ article.image.url }}" class="card-img-top mb-3" alt="{{ article.title }}">
+                        {% endif %}
+
+                        <!-- Content -->
+                        <div class="card-text">
+                            {{ article.content|safe }}
+                        </div>
+                    </div>
+
+                    <!-- Author and Published At -->
+                    <div class="card-footer text-muted">
+                        <h5 class="mb-0">
+                            {{ article.author.username }} | {{ article.published_at|date:"M. d, Y, g:i a" }}
+                        </h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
