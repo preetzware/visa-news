@@ -1,6 +1,7 @@
 {% load static %}
 
-{% url 'home' as home_url %}
+{% url 'home' as visa_app_url %}
+{% url 'visanews' as visanews_url %}
 
 <!DOCTYPE html>
 <html class="h-100" lang="en">
@@ -50,10 +51,10 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link {% if request.path == home_url %}active{% endif %}" href="#">Home</a>
+                    <a class="nav-link {% if request.path == visa_app_url %}active{% endif %}" href="{{ visa_app_url }}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Visa News</a>
+                    <a class="nav-link" href="{{ visanews_url }}">Visa News</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Air Travel</a>
