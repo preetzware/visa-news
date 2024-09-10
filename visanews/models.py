@@ -46,7 +46,7 @@ class VisanewsArticle(models.Model):
         return f"{base_url}{self.title} {self.get_absolute_url()}"
 
     def get_share_icon(self):
-        return "icon-class-name"
+        return "icon-class-name" 
 
 
 class Category(models.Model):
