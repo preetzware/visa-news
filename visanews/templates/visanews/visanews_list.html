@@ -1,37 +1,35 @@
 {% extends 'visa_app/base.html' %}
 
 {% block content %}
-    <h1>Visa News</h1>
+    <h1 class="visa-news-title">Visa News</h1>
     <div class="container">
         <div class="row">
             {% for article in articles %}
-                <div class="col-md-4 mb-4">
-                    <div class="card">
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
                         <!-- Category -->
-                        <div class="card-header bg-primary text-white">
+                        <div class="card-header text-white">
                             <h5 class="card-title">
-                                <a href="{% url 'visanews_detail' slug=article.slug %}" class="text-white">{{ article.category.name }}</a>
+                                <a href="{% url 'visanews_detail' slug=article.slug %}" class="text-white text-decoration-none">
+                                    {{ article.category.name }}</a>
                             </h5>
                         </div>
-                        <!-- Title -->
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                <a href="{% url 'visanews_detail' slug=article.slug %}">{{ article.title }}</a>
-                            </h4>
-                            <!-- Image -->
-                            {% if article.image %}
-                                <img src="{{ article.image.url }}" class="card-img-top" alt="{{ article.title }}">
-                            {% endif %}
+                        <!-- Article Title -->
+                        <a href="{% url 'visanews_detail' slug=article.slug %}" class="text-decoration-none">
+                            <h4 class="h5 article-title">{{ article.title }}</h4>
+                        </a>
+                        <!-- Image -->
+                        {% if article.image %}
+                            <img src="{{ article.image.url }}" class="card-img-top" alt="{{ article.title }}">
+                        {% endif %}
 
-                            <!-- Excerpt -->
-                            <p class="card-text">{{ article.excerpt }}</p>
-                        </div>
-
+                        <!-- Excerpt -->
+                        <p class="card-text">{{ article.excerpt }}</p>
                         <!-- Author and Published At -->
-                        <div class="card-footer text-muted">
-                            <h5 class="mb-0">
-                                {{ article.author.username }} | {{ article.published_at|date:"M. d, Y, g:i a" }}
-                            </h5>
+                        <p class="card-text text-muted">
+                            {{ article.author.username }} | {{ article.published_at|date:"M. d, Y, g:i a" }}
+                        </p>
                         </div>
                     </div>
                 </div>

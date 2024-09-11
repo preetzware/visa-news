@@ -42,15 +42,17 @@
           <div class="card h-100">
               <div class="card-body">
                   <!-- Article Category -->
-                  <div class="card-header bg-primary text-white">
+                  <div class="card-header text-white">
                     <h5 class="card-title">
-                        <a href="{% url 'article_detail' slug=article.slug %}" class="text-white">{{ article.category.name }}</a>
+                        <a href="{% url 'article_detail' slug=article.slug %}" class="text-white text-decoration-none">
+                            {{ article.category.name }}
+                        </a>
                     </h5>
-                </div>
-                  <!-- Article Title -->
-                  <a href="{% url 'article_detail' article.slug %}" class="text-dark">
-                      <h2 class="h5">{{ article.title }}</h2>
-                  </a>
+                    </div>
+                    <!-- Article Title -->
+                    <a href="{% url 'article_detail' article.slug %}" class="text-decoration-none">
+                        <h4 class="h5 article-title">{{ article.title }}</h4>
+                    </a>
 
                   <!-- Article Image -->
                   <img src="{{ article.image.url }}" class="card-img-top my-2" alt="{{ article.title }}">
