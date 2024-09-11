@@ -42,8 +42,11 @@
           <div class="card h-100">
               <div class="card-body">
                   <!-- Article Category -->
-                  <h5 class="card-title text-primary">{{ article.category.name }}</h5>
-
+                  <div class="card-header bg-primary text-white">
+                    <h5 class="card-title">
+                        <a href="{% url 'article_detail' slug=article.slug %}" class="text-white">{{ article.category.name }}</a>
+                    </h5>
+                </div>
                   <!-- Article Title -->
                   <a href="{% url 'article_detail' article.slug %}" class="text-dark">
                       <h2 class="h5">{{ article.title }}</h2>
