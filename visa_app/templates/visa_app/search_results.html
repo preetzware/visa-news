@@ -1,11 +1,36 @@
-<h1>Search Results for "{{ query }}"</h1>
+{% extends 'visa_app/base.html' %}
 
-{% if results %}
-    <ul>
-        {% for result in results %}
-            <li><a href="{{ result.get_absolute_url }}">{{ result.title }}</a></li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <p>No results found.</p>
-{% endif %}
+{% block content %}
+
+<!-- back to home button -->
+<div class="container mt-3">
+    <a href="{% url 'home' %}" class="btn btn-secondary mb-3">
+        <i class="fas fa-arrow-left"></i> Back to Home
+    </a>
+</div>
+
+<!-- search_results template -->
+<div class="container mt-5">
+    <h1>Search Results for "{{ query }}"</h1>
+
+    {% if results %}
+        <div class="row">
+            {% for article in results %}
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <img src="{{ article.image.url }}" class="card-img-top" alt="{{ article.title }}">
+                        <div class="card-body">
+                            <h5 class="card-title"><a href="{% url 'article_detail' article.slug %}">{{ article.title }}</a></h5>
+                            <p><strong>Category:</strong> {{ article.category.name }}</p>
+                            <p>{{ article.excerpt }}</p>
+                            <p class="text-muted">{{ article.author }} | {{ article.published_at|date:"M. d, Y, g:i a" }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No articles found matching your query.</p>
+    {% endif %}
+</div>
+{% endblock %}
