@@ -156,6 +156,7 @@ main {
 
 .card-header {
     background-color: #0f1e64;
+    padding: .5rem .6rem;
 }
 
 .article-title {
@@ -173,23 +174,6 @@ main {
     font-size: 1.4rem;
     font-weight: 700;
     color: #4A4A4F;
-}
-
-.light-bg {
-    background-color: #fff;
-}
-
-.dark-bg {
-    background-color: #445261;
-}
-
-.main-bg {
-    background-color: #F9FAFC;
-}
-
-.card {
-    border: none;
-    background-color: transparent;
 }
 
 .image-container {
@@ -381,7 +365,7 @@ main {
     margin-right: 1rem;
 }
 
-/* Navbar links alignment for mobile view (collapsed state) */
+/* Media Queries for Navbar max-width: 991.98px */
 @media (max-width: 991.98px) {
     .navbar-nav {
         flex-direction: column; 
@@ -395,26 +379,27 @@ main {
     }
 }
 
-/* Ensure the navbar content is aligned properly */
+/* Media Queries for Navbar max-width:576px */
 @media (max-width: 576px) {
-      .navbar-toggler {
-        padding: 0.2rem 0.4rem;
-        font-size: 0.9rem;
-        line-height: 0;
-    }
-
     .navbar-nav {
         text-align: center;
         margin-top: 1rem;
     }
 
     .navbar-logo {
-        height: 70px;
-        width: 70%;
+        max-height: 80px;
+        height: auto;
+        max-width: 100%;
+        margin-right: 0;
     }
-}
 
-/* Responsive Design */
+    .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba%288, 8, 8, 0.8%29' stroke-width='2' linecap='round' linejoin='round' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+        background-size: 1.5em 1.5em;
+    }
+}    
+
+/* Media Queries for Footer max-width:767px */
 @media (max-width: 767px) {
     .footer {
         text-align: left;
