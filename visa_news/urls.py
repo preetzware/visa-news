@@ -18,7 +18,8 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('', include('visa_app.urls'), name="visa_app-urls"), 
+    path('', include('visa_app.urls'), name="visa_app-urls"),
+    path("accounts/", include("allauth.urls")), 
     path('visanews/', include('visanews.urls')),
     path('admin/', admin.site.urls),
     path('summernote/', include('django_summernote.urls')),

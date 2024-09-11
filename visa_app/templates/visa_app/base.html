@@ -2,6 +2,9 @@
 
 {% url 'home' as visa_app_url %}
 {% url 'visanews' as visanews_url %}
+{% url 'account_login' as login_url %}
+{% url 'account_signup' as signup_url %}
+{% url 'account_logout' as logout_url %}
 
 <!DOCTYPE html>
 <html class="h-100" lang="en">
@@ -58,15 +61,28 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Air Travel</a>
-                </li>
+                <!-- Sign Up link or Logout link based on authentication status -->
+                {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Sign Up</a>
+                    <a class="nav-link {% if request.path == logout_url %}active{% endif %}" href="{% url 'account_logout' %}">Logout</a>
                 </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link {% if request.path == signup_url %}active{% endif %}" href="{% url 'account_signup' %}">Sign Up</a>
+                </li>
+                {% endif %}
             </ul>
             
-            <!-- Login and Search Buttons -->
-            <div class="d-flex">
-                <a href="#" class="btn login-btn">Login</a>
+            <!-- Login Buttons -->
+            <div class="d-flex align-items-center">
+                {% if user.is_authenticated %}
+                <!-- Display user's first name with greeting -->
+                <span class="navbar-text me-3">Hi, {{ user.first_name }}!</span>
+                {% else %}
+                <a href="{% url 'account_login' %}" class="btn login-btn">Login</a>
+                {% endif %}
+
+                <!-- Search Button -->
                 <button class="btn search-btn" type="button" data-bs-toggle="collapse" data-bs-target="#searchBar" aria-expanded="false" aria-controls="searchBar">
                     <i class="fas fa-search"></i>
                 </button>
