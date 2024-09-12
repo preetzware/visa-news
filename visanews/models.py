@@ -61,10 +61,11 @@ class Category(models.Model):
 
 class Comment(models.Model):
     article = models.ForeignKey(VisanewsArticle, on_delete=models.CASCADE, related_name='comments')
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='visanews_comments')
     body = models.TextField()
-    created_on = models.DateTimeField(default=timezone.now)
+    created_on = models.DateTimeField(auto_now_add=True)
     approved = models.BooleanField(default=False)
+    parent = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='replies')
 
     class Meta:
         ordering = ['created_on']
