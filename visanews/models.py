@@ -58,3 +58,16 @@ class Category(models.Model):
 
     class Meta:
         verbose_name_plural = "Categories"
+
+class Comment(models.Model):
+    article = models.ForeignKey(VisanewsArticle, on_delete=models.CASCADE, related_name='comments')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments')
+    body = models.TextField()
+    created_on = models.DateTimeField(default=timezone.now)
+    approved = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ['created_on']
+
+    def __str__(self):
+        return f"Comment by {self.user} on {self.article.title}"
