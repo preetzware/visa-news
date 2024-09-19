@@ -242,6 +242,29 @@ main {
     color: rgb(222, 146, 168);
 }
 
+/* Alert message */
+.alert {
+    margin-top: 1rem;
+    background-color: #0dcaf05c;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border: 1.5px solid #141619;
+}
+
+.alert-dismissible .btn-close {
+    padding: 0.75rem;
+}
+
+.alert .alert-heading {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* Ensure correct display of dismiss button */
+.alert-dismissible {
+    padding-right: 3rem;
+}
+
 /* Footer Styles */
 .footer .card-title {
     font-size: 0.9rem;
