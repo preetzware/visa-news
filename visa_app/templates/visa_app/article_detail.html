@@ -1,15 +1,34 @@
-{% extends 'visa_app/base.html' %} {% block content %}
+{% extends 'visa_app/base.html' %} 
+{% block content %}
 {% load static %}
 {% load crispy_forms_tags %}
 
+<!-- Masthead Section -->
 <div class="masthead">
     <div class="container">
         <div class="row g-0">
             <div class="col-md-6 masthead-text">
-                <!-- Post title goes in these h1 tags -->
+                <!-- Article title goes in these h1 tags -->
                 <h1 class="article-title">{{ article.title }}</h1>
-                <!-- Post author goes before the | the article's created date goes after -->
+                <!-- Article author name | date.time -->
                 <p class="article-subtitle">{{ article.author }} | {{ article.created_on }}</p>
+                <!-- Add the excerpt -->
+                <p class="article-excerpt text-muted mt-2">{{ article.excerpt }}</p>
+                <!-- Social Media Share Icons -->
+                <div class="social-share-icons mt-3">
+                    <a href="{{ article.get_facebook_share_url }}" target="_blank" class="btn btn-outline-primary btn-sm me-2">
+                        <i class="fab fa-facebook"></i> Share
+                    </a>
+                    <a href="{{ article.get_twitter_share_url }}" target="_blank" class="btn btn-outline-info btn-sm me-2">
+                        <i class="fab fa-twitter"></i> Tweet
+                    </a>
+                    <a href="{{ article.get_linkedin_share_url }}" target="_blank" class="btn btn-outline-secondary btn-sm me-2">
+                        <i class="fab fa-linkedin"></i> Share
+                    </a>
+                    <a href="{{ article.get_whatsapp_share_url }}" target="_blank" class="btn btn-outline-success btn-sm me-2">
+                        <i class="fab fa-whatsapp"></i> Share
+                    </a>
+                </div>
             </div>
             <div class="d-none d-md-block col-md-6 masthead-image">
                 <img src="{% static 'images/default.jpg' %}" class="scale" alt="placeholder">
@@ -18,12 +37,12 @@
     </div>
 </div>
 
+<!-- Article Content Section -->
 <div class="container">
     <div class="row">
-        <div class="col card mb-4  mt-3 left  top">
+        <div class="col-12 card mb-4 mt-3 article-card">
             <div class="card-body">
                 <!-- The article content goes inside the card-text. -->
-                <!-- Use the | safe filter inside the template tags -->
                 <p class="card-text">
                     {{ article.content | safe }}
                 </p>
@@ -32,69 +51,87 @@
     </div>
 </div>
 
-<!-- Displaying count of comments -->
-<div class="row">
-    <div class="col-12">
-      <strong class="text-secondary">
-        <i class="far fa-comments"></i> {{ comment_count }}
-      </strong>
-    </div>
-    <div class="col-12">
-      <hr>
-    </div>
-  </div>
-  <!-- Displaying Comments -->
-  <div class="row">
-    <div class="col-md-8 card mb-4  mt-3 ">
-      <h3>Comments:</h3>
-      <div class="card-body">
-        <!-- We want a for loop inside the empty control tags
-          to iterate through each comment in comments -->
-        {% for comment in comments %}
-        <div class="p-2 comments
-          {% if not comment.approved and comment.author == user %}
-          faded{% elif not comment.approved %} d-none{% endif %}">
-          <p class="font-weight-bold">
-            {{ comment.author }}
-            <span class="font-weight-normal">
-              {{ comment.created_on }}
-            </span> wrote:
-          </p>
-          <div id="comment{{ comment.id }}">
-            {{ comment.body | linebreaks }}
-          </div>
-          {% if not comment.approved and comment.author == user %}
-          <p class="approval">
-            This comment is awaiting approval
-          </p>
-          {% endif %}
+<!-- Like/Dislike Buttons and Comment Count Section -->
+<div class="container my-4">
+    <div class="row align-items-center justify-content-between">
+        <!-- Comment Count (Left Aligned) -->
+        <div class="col-auto">
+            <strong class="text-secondary">
+                <i class="far fa-comments"></i> {{ comment_count }}
+            </strong>
         </div>
-        <!-- Our for loop ends here -->
-        {% endfor %}
-      </div>
+
+        <!-- Like/Dislike Buttons (Right Aligned) -->
+        <div class="col-auto d-flex align-items-center">
+            <!-- Thumbs Up Button -->
+            <button class="btn btn-outline-success btn-sm mx-2" id="like-button">
+                <i class="fas fa-thumbs-up"></i> <span id="like-count">0</span>
+            </button>
+
+            <!-- Thumbs Down Button -->
+            <button class="btn btn-outline-danger btn-sm mx-2" id="dislike-button">
+                <i class="fas fa-thumbs-down"></i> <span id="dislike-count">0</span>
+            </button>
+        </div>
     </div>
-  </div>
 </div>
 
- <!-- Creating New Comments -->
- <div class="col-md-4 card mb-4 mt-3">
-  <div class="card-body">
-    {% if user.is_authenticated %}
-    <h3>Leave a comment:</h3>
-    <p>Posting as: {{ user.username }}</p>
-    <form id="commentForm" method="post"
-      style="margin-top: 1.3em;">
-      {{ comment_form | crispy }}
-      {% csrf_token %}
-      <button id="submitButton" type="submit"
-        class="btn btn-signup btn-lg">Submit</button>
-    </form>
-    {% else %}
-    <p>Log in to leave a comment</p>
-    {% endif %}
-  </div>
+<!-- Comments and New Comment Section -->
+<div class="container">
+    <div class="row">
+        <!-- Displaying Comments -->
+        <div class="col-md-8 mb-4 comments-section">
+            <div class="card comments-card">
+                <div class="card-body">
+                    <h3 class="card-title">Comments:</h3>
+                    {% for comment in comments %}
+                    <div class="comment-item
+                        {% if not comment.approved and comment.author == user %} 
+                        pending-approval 
+                        {% elif not comment.approved %} 
+                        d-none 
+                        {% endif %}">
+                        <p class="commentator font-weight-bold">
+                            {{ comment.author }}
+                            <span class="commentator font-weight-normal">
+                                {{ comment.created_on }}
+                            </span> wrote:
+                        </p>
+                        <div id="comment{{ comment.id }}">
+                            {{ comment.body | linebreaks }}
+                        </div>
+                        {% if not comment.approved and comment.author == user %}
+                        <p class="approval-message">
+                            This comment is awaiting approval.
+                        </p>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Creating New Comments -->
+        <div class="col-md-4 mb-4 new-comment-section">
+            <div class="card new-comment-card">
+                <div class="card-body">
+                    {% if user.is_authenticated %}
+                    <h3 class="card-title">Leave a comment:</h3>
+                    <p>Posting as: {{ user.username }}</p>
+                    <form id="commentForm" method="post">
+                        {{ comment_form | crispy }}
+                        {% csrf_token %}
+                        <button id="submitButton" type="submit" class="btn btn-primary btn-lg">Submit</button>
+                    </form>
+                    {% else %}
+                    <p>Log in to leave a comment</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-</div>
-</div>
+
+<script src="{% static 'js/like_dislike.js' %}"></script>
 
 {% endblock content %}

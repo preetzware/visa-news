@@ -4,6 +4,7 @@ from django.views import generic
 from django.contrib import messages
 from .models import Article
 from .forms import CommentForm
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 
@@ -27,7 +28,7 @@ def article_detail(request, slug):
             comment.save()
             messages.add_message(
         request, messages.SUCCESS,
-        'Comment submitted and awaiting approval'
+        'Thank You! Your comment is awaiting approval.'
     )
     
     comment_form = CommentForm()
@@ -69,3 +70,24 @@ def search_view(request):
     distinct() Method: This ensures that if an article matches in multiple fields, it only appears 
     once in the search results.
     """
+
+def like_article(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        article_id = data.get('article_id')
+        action = data.get('action')
+
+        article = Article.objects.get(id=article_id)
+        if action == 'like':
+            # Logic to handle liking the article
+            pass
+        elif action == 'dislike':
+            # Logic to handle disliking the article
+            pass
+
+        return JsonResponse({
+            'success': True,
+            'likes': article.likes.count(),
+            'dislikes': article.dislikes.count()
+        })
+    return JsonResponse({'success': False})

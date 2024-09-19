@@ -169,6 +169,12 @@ main {
     color: #e32227;
 }
 
+.article-excerpt {
+    font-size: 1.2em;
+    color: #000000;
+    font-weight: 500;
+}
+
 .brand {
     font-family: Lato, sans-serif;
     font-size: 1.4rem;
@@ -200,44 +206,6 @@ main {
     text-transform: uppercase;
 }
 
-.masthead {
-    margin-top: 10px;
-    overflow: hidden;
-    position: relative;
-    display: inline-block;
-    height: 33vh;
-    width: 100%;
-}
-
-.masthead-text {
-    background-color: #445261;
-    color: white;
-    position: relative;
-}
-
-.masthead-image {
-    position: relative;
-    overflow: hidden;
-}
-
-.masthead-image:after {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 90%;
-    height: 100%;
-    width: 150%;
-    background: #445261;
-    -webkit-transform: skew(15deg);
-    -moz-transform: skew(15deg);
-    transform: skew(15deg);
-    z-index: 100;
-}
-
-.faded {
-    color: rgb(172, 175, 175);
-}
-
 .approval {
     color: rgb(222, 146, 168);
 }
@@ -245,10 +213,11 @@ main {
 /* Alert message */
 .alert {
     margin-top: 1rem;
-    background-color: #0dcaf05c;
+    background-color: #8b00e8;
     font-size: 1.1rem;
     font-weight: bold;
-    border: 1.5px solid #141619;
+    color: #ffffff;
+    border: 1.5px solid #34203d;
 }
 
 .alert-dismissible .btn-close {
@@ -260,9 +229,175 @@ main {
     font-weight: bold;
 }
 
-/* Ensure correct display of dismiss button */
 .alert-dismissible {
     padding-right: 3rem;
+}
+
+/* Comments section */
+
+.card-title {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.row {
+    margin: 0 -15px;
+}
+
+.col-md-8, .col-md-4 {
+    padding: 0 15px;
+}
+
+/* General Container Margins */
+
+/* Masthead Styling */
+.masthead {
+    background: #f8f9fa;
+    padding: 2rem 0;
+}
+
+.masthead-text {
+    padding: 1rem;
+}
+
+.masthead-text .article-title {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.masthead-text .article-subtitle {
+    font-size: 1.1rem;
+    color: #6c757d;
+}
+
+.masthead-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+}
+
+/* Article Card Styling */
+.article-card {
+    border: 1px solid #e3e3e3;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-text {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+/* Comment Count Styling */
+.comment-count {
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* Active state for the like button */
+.btn-like-active {
+    background-color: green;
+    color: white;
+    border-color: green;
+}
+
+/* Active state for the dislike button */
+.btn-dislike-active {
+    background-color: red;
+    color: white;
+    border-color: red;
+}
+
+/* Styling for the like and dislike count */
+#like-count, #dislike-count {
+    margin-left: 5px;
+    font-weight: bold;
+}
+
+/* Styles for the comments card */
+
+.comments-card {
+    border: 1px solid #dee2e6;
+    border-radius: .25rem;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+}
+
+.comment-item {
+    border-bottom: 1px solid #e9ecef;
+    padding: 1rem 0;
+}
+
+.comment-item:last-child {
+    border-bottom: none;
+}
+
+.commentator {
+    font-weight: bold;
+}
+
+.pending-approval {
+    background-color: #bdbdfb;
+    border-color: #3e2e81;
+    color: #3f057d;
+}
+
+.approval-message {
+    color: #856404;
+    font-style: italic;
+}
+
+/* Styles for the new comment card */
+.new-comment-card {
+    border: 1px solid #dee2e6;
+    border-radius: .25rem;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+}
+
+#commentForm {
+    margin-top: 1.3em;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+}
+
+.form-control {
+    border: 3px solid #141619;
+}
+
+/* Centering the submit button */
+
+#commentForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#submitButton {
+    margin-top: 1rem;
+}
+
+/* Social media icons links */
+
+.social-share-icons a {
+    margin-right: 10px;
+    text-decoration: none;
+}
+
+.social-share-icons .btn {
+    display: inline-flex;
+    align-items: center;
+}
+
+.social-share-icons i {
+    margin-right: 5px;
 }
 
 /* Footer Styles */
