@@ -296,6 +296,15 @@ main {
 }
 
 /* Active state for the like button */
+#like-button:hover {
+    background-color: #28a745; /* Green background on hover */
+    color: white;
+}
+#dislike-button:hover {
+    background-color: #dc3545; /* Red background on hover */
+    color: white;
+}
+
 .btn-like-active {
     background-color: green;
     color: white;
@@ -307,6 +316,12 @@ main {
     background-color: red;
     color: white;
     border-color: red;
+}
+
+.btn-sm {
+    padding: .45rem 1rem;
+    font-size: 1rem;
+    border-radius: .3rem;
 }
 
 /* Styling for the like and dislike count */
@@ -406,6 +421,11 @@ color: #fff;
 background-color: #03db9e;
 }
 
+.text-secondary,
+.fa-regular {
+    font-size: larger;
+    color: #0056b3!important;
+}
 /* Social media icons links */
 
 .social-share-icons a {

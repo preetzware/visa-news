@@ -51,30 +51,57 @@
     </div>
 </div>
 
-<!-- Like/Dislike Buttons and Comment Count Section -->
+<!-- Comment Count Section -->
 <div class="container my-4">
     <div class="row align-items-center justify-content-between">
-        <!-- Comment Count (Left Aligned) -->
         <div class="col-auto">
             <strong class="text-secondary">
-                <i class="far fa-comments"></i> {{ comment_count }}
+                <i class="fa-regular fa-comment-dots"></i> {{ comment_count }}
             </strong>
         </div>
 
-        <!-- Like/Dislike Buttons -->
+        <!-- Like/Dislike Section -->
         <div class="col-auto d-flex align-items-center">
-            <!-- Thumbs Up Button -->
-            <button class="btn btn-outline-success btn-sm mx-2" id="like-button" data-article-id="{{ article.id }}">
-                <i class="fas fa-thumbs-up"></i> <span id="like-count">0</span>
-            </button>
-        
-            <!-- Thumbs Down Button -->
-            <button class="btn btn-outline-danger btn-sm mx-2" id="dislike-button" data-article-id="{{ article.id }}">
-                <i class="fas fa-thumbs-down"></i> <span id="dislike-count">0</span>
-            </button>
+            <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+            <!-- Article ID for JavaScript -->
+            <input type="hidden" id="article-id" value="{{ article.id }}">
+            {% if user.is_authenticated %}
+                <button class="btn btn-outline-success btn-sm mx-2" id="like-button" data-article-id="{{ article.id }}">
+                    <i class="fas fa-thumbs-up"></i> <span id="like-count">{{ like_count }}</span>
+                </button>
+                
+                <button class="btn btn-outline-danger btn-sm mx-2" id="dislike-button" data-article-id="{{ article.id }}">
+                    <i class="fas fa-thumbs-down"></i> <span id="dislike-count">{{ dislike_count }}</span>
+                </button>
+            {% else %}
+                <button class="btn btn-outline-success btn-sm mx-2" data-bs-toggle="modal" data-bs-target="#loginModal">
+                    <i class="fas fa-thumbs-up"></i> <span id="like-count">{{ like_count }}</span>
+                </button>
+                <button class="btn btn-outline-danger btn-sm mx-2" data-bs-toggle="modal" data-bs-target="#loginModal">
+                    <i class="fas fa-thumbs-down"></i> <span id="dislike-count">{{ dislike_count }}</span>
+                </button>
+            {% endif %}
         </div>
     </div>
 </div>
+
+<!-- Modal for unauthenticated users -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="loginModalLabel">Login Required</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Please login to like or dislike articles.
+            </div>
+            <div class="modal-footer">
+                <a href="{% url 'account_login' %}" class="btn btn-primary">Login</a>
+            </div>
+        </div>
+    </div>
+</div>        
 
 <!-- Comments and New Comment Section -->
 <div class="container">
@@ -107,8 +134,8 @@
                         {% endif %}
                         {% if user.is_authenticated and comment.author == user %}
                         <button class="btn btn-delete" comment_id="{{ comment.id }}">Delete</button>
-                <button class="btn btn-edit" comment_id="{{ comment.id }}">Edit</button>
-                {% endif %}
+                        <button class="btn btn-edit" comment_id="{{ comment.id }}">Edit</button>
+                        {% endif %}
                     </div>
                     {% endfor %}
                 </div>
@@ -167,4 +194,3 @@
 <script src="{% static 'js/like_dislike.js' %}"></script>
 <script src="{% static 'js/comments.js' %}"></script>
 {% endblock %}
-

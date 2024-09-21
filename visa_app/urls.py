@@ -8,7 +8,7 @@ urlpatterns = [
     path('', views.ArticleList.as_view(), name='home'), # Home page URL
     path('articles/<slug:slug>/', views.article_detail, name='article_detail'), # URL to opening article 
     path('search/', views.search_view, name='search'),  # New URL pattern for search
-    path('like-article/', like_article, name='like_article'),
+    path('like_article/<int:article_id>/', views.like_article, name='like_article'),  # Like article URL
     path('articles/<slug:slug>/edit_comment/<int:comment_id>', views.comment_edit, name='comment_edit'),
     path('articles/<slug:slug>/delete_comment/<int:comment_id>', views.comment_delete, name='comment_delete'),
 ]

@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect, JsonResponse
 from django.contrib import messages
 from .models import Article, Comment
 from .forms import CommentForm
-from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
 import json
 
 # Create your views here.
@@ -18,6 +18,8 @@ class ArticleList(generic.ListView):
 def article_detail(request, slug):
     queryset = Article.objects.filter(status=1)
     article = get_object_or_404(queryset, slug=slug)
+    like_count = article.number_of_likes()
+    dislike_count = article.number_of_dislikes()
     comments = article.comments.all().order_by("-created_on")
     comment_count = article.comments.filter(approved=True).count()
 
@@ -29,10 +31,10 @@ def article_detail(request, slug):
             comment.article = article
             comment.save()
             messages.add_message(
-        request, messages.SUCCESS,
-        'Thank You! Your comment is awaiting approval.'
-    )
-    
+                request, messages.SUCCESS,
+                'Thank You! Your comment is awaiting approval.'
+            )
+
     comment_form = CommentForm()
 
     return render(request, "visa_app/article_detail.html", {
@@ -40,14 +42,17 @@ def article_detail(request, slug):
         "comments": comments,
         "comment_count": comment_count,
         "comment_form": comment_form,
-    })  
+        "like_count": like_count,
+        "dislike_count": dislike_count,
+    })
 
 def index_view(request):
     latest_articles = Article.objects.all().order_by('-published_at')[:3]  # Latest 3 articles for the carousel
     other_articles = Article.objects.all().order_by('-published_at')[3:9]  # The rest of the articles for cards
     return render(request, 'visa_app/index.html', {
         'latest_articles': latest_articles,
-        'other_articles': other_articles,}) 
+        'other_articles': other_articles,
+    })
 
 def search_view(request):
     """
@@ -73,27 +78,23 @@ def search_view(request):
     once in the search results.
     """
 
-def like_article(request):
-    if request.method == "POST":
-        data = json.loads(request.body)
-        article_id = data.get('article_id')
-        action = data.get('action')
+@require_POST
+def like_article(request, article_id):
+    article = get_object_or_404(Article, id=article_id)
+    action = json.loads(request.body).get('action')
 
-        article = get_object_or_404(Article, id=article_id)
+    if action == 'like':
+        article.likes.add(request.user)
+        article.dislikes.remove(request.user)
+    elif action == 'dislike':
+        article.dislikes.add(request.user)
+        article.likes.remove(request.user)
 
-        if action == 'like':
-            if request.user not in article.likes.all():  # Prevent multiple likes from the same user
-                article.likes.add(request.user)
-        elif action == 'dislike':
-            if request.user in article.likes.all():  # Prevent removal of like if it doesn't exist
-                article.likes.remove(request.user)
-
-        return JsonResponse({
-            'success': True,
-            'likes': article.number_of_likes(),  # Using the method you defined
-        })
-
-    return JsonResponse({'success': False})
+    return JsonResponse({
+        'success': True,
+        'like_count': article.likes.count(),
+        'dislike_count': article.dislikes.count(),
+    })
 
 
 def comment_edit(request, slug, comment_id):
