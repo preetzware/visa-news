@@ -384,6 +384,28 @@ main {
     margin-top: 1rem;
 }
 
+/* Edit & Delete buttons on comments */
+.btn-delete,
+.btn-edit,
+.btn-close {
+    font-weight: bold;
+    border: 2px solid #5c5a5a !important;
+    border-radius: .55rem;
+}
+
+/* Hover effect for all buttons */
+.btn-delete:hover,
+.btn-close:hover {
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.btn-edit:hover {
+color: #fff;
+background-color: #03db9e;
+}
+
 /* Social media icons links */
 
 .social-share-icons a {

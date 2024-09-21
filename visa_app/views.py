@@ -1,10 +1,12 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, reverse
 from django.db.models import Q
 from django.views import generic
+from django.http import HttpResponseRedirect, JsonResponse
 from django.contrib import messages
-from .models import Article
+from .models import Article, Comment
 from .forms import CommentForm
 from django.views.decorators.csrf import csrf_exempt
+import json
 
 # Create your views here.
 
@@ -77,17 +79,58 @@ def like_article(request):
         article_id = data.get('article_id')
         action = data.get('action')
 
-        article = Article.objects.get(id=article_id)
+        article = get_object_or_404(Article, id=article_id)
+
         if action == 'like':
-            # Logic to handle liking the article
-            pass
+            if request.user not in article.likes.all():  # Prevent multiple likes from the same user
+                article.likes.add(request.user)
         elif action == 'dislike':
-            # Logic to handle disliking the article
-            pass
+            if request.user in article.likes.all():  # Prevent removal of like if it doesn't exist
+                article.likes.remove(request.user)
 
         return JsonResponse({
             'success': True,
-            'likes': article.likes.count(),
-            'dislikes': article.dislikes.count()
+            'likes': article.number_of_likes(),  # Using the method you defined
         })
+
     return JsonResponse({'success': False})
+
+
+def comment_edit(request, slug, comment_id):
+    """
+    view to edit comments
+    """
+    if request.method == "POST":
+
+        queryset = Article.objects.filter(status=1)
+        article = get_object_or_404(queryset, slug=slug)
+        comment = get_object_or_404(Comment, pk=comment_id)
+        comment_form = CommentForm(data=request.POST, instance=comment)
+
+        if comment_form.is_valid() and comment.author == request.user:
+            comment = comment_form.save(commit=False)
+            comment.article = article
+            comment.approved = False
+            comment.save()
+            messages.add_message(request, messages.SUCCESS, 'Comment Updated and awaiting approval!')
+        else:
+            messages.add_message(request, messages.ERROR, 'Error updating comment!')
+
+    return HttpResponseRedirect(reverse('article_detail', args=[slug]))
+
+
+def comment_delete(request, slug, comment_id):
+    """
+    view to delete comment
+    """
+    queryset = Article.objects.filter(status=1)
+    post = get_object_or_404(queryset, slug=slug)
+    comment = get_object_or_404(Comment, pk=comment_id)
+
+    if comment.author == request.user:
+        comment.delete()
+        messages.add_message(request, messages.SUCCESS, 'Comment deleted!')
+    else:
+        messages.add_message(request, messages.ERROR, 'You can only delete your own comments!')
+
+    return HttpResponseRedirect(reverse('article_detail', args=[slug]))
