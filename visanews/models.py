@@ -1,12 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 STATUS = ((0, "Draft"), (1, "Published"))
 
 class VisanewsArticle(models.Model):
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="visanews_articles")
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="visanews_author")
     content = models.TextField()
     excerpt = models.TextField(blank=True)
     published_at = models.DateTimeField(blank=True, null=True)
@@ -14,7 +15,8 @@ class VisanewsArticle(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     category = models.ForeignKey('Category', on_delete=models.SET_NULL, null=True, blank=True, related_name='visanews_articles')
     status = models.IntegerField(choices=STATUS, default=0)
-    likes = models.ManyToManyField(User, related_name="visanews_article_likes", blank=True)
+    likes = models.ManyToManyField(User, related_name="visanews_likes", blank=True)
+    dislikes = models.ManyToManyField(User, related_name="visanews_dislikes", blank=True)
 
     class Meta:
         ordering = ['-published_at']
@@ -28,7 +30,10 @@ class VisanewsArticle(models.Model):
     def number_of_likes(self):
         return self.likes.count()
 
-        # Methods to generate social media share URLs
+    def number_of_dislikes(self):
+        return self.dislikes.count()
+
+    # Methods to generate social media share URLs
     def get_facebook_share_url(self):
         base_url = "https://www.facebook.com/sharer/sharer.php?u="
         return f"{base_url}{self.get_absolute_url()}"
@@ -46,18 +51,17 @@ class VisanewsArticle(models.Model):
         return f"{base_url}{self.title} {self.get_absolute_url()}"
 
     def get_share_icon(self):
-        return "icon-class-name" 
-
+        return "icon-class-name"
 
 class Category(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
     slug = models.SlugField(max_length=100, unique=True)
-
-    def __str__(self):
-        return self.name
 
     class Meta:
         verbose_name_plural = "Categories"
+
+    def __str__(self):
+        return self.name
 
 class Comment(models.Model):
     article = models.ForeignKey(VisanewsArticle, on_delete=models.CASCADE, related_name='comments')
