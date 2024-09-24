@@ -400,6 +400,8 @@ main {
 }
 
 /* Edit & Delete buttons on comments */
+.visanews-btn-delete,
+.visanews-btn-edit,
 .btn-delete,
 .btn-edit,
 .btn-close {
@@ -409,6 +411,7 @@ main {
 }
 
 /* Hover effect for all buttons */
+.visanews-btn-delete,
 .btn-delete:hover,
 .btn-close:hover {
     color: #fff;
@@ -416,6 +419,7 @@ main {
     border-color: #dc3545;
 }
 
+.visanews-btn-edit,
 .btn-edit:hover {
 color: #fff;
 background-color: #03db9e;
