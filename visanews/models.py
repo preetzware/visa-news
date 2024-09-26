@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
+from cloudinary.models import CloudinaryField
 
 STATUS = ((0, "Draft"), (1, "Published"))
 
@@ -8,6 +9,7 @@ class VisanewsArticle(models.Model):
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="visanews_author")
+    featured_image = CloudinaryField('image', default='placeholder')
     content = models.TextField()
     excerpt = models.TextField(blank=True)
     published_at = models.DateTimeField(blank=True, null=True)

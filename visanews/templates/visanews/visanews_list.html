@@ -1,4 +1,5 @@
 {% extends 'visa_app/base.html' %}
+{% load static %}
 
 {% block content %}
     <h1 class="visa-news-title">Visa News</h1>
@@ -20,8 +21,10 @@
                             <h4 class="h5 article-title">{{ article.title }}</h4>
                         </a>
                         <!-- Image -->
-                        {% if article.image %}
-                            <img src="{{ article.image.url }}" class="card-img-top" alt="{{ article.title }}">
+                        {% if "placeholder" in article.featured_image.url %}
+                        <img class="card-img-top" src="{% static 'images/default.jpg' %}" alt="placeholder image">
+                        {% else %}
+                        <img class="card-img-top" src=" {{ article.featured_image.url }}" alt="{{ article.title }}">
                         {% endif %}
 
                         <!-- Excerpt -->

@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from cloudinary.models import CloudinaryField
 
 STATUS = ((0, "Draft"), (1, "Published"))
 
@@ -11,6 +12,7 @@ class Article(models.Model):
     published_at = models.DateTimeField(blank=True, null=True)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    featured_image = CloudinaryField('image', default='placeholder')
     content = models.TextField()
     category = models.ForeignKey('Category', on_delete=models.SET_NULL, null=True, blank=True, related_name='visa_articles')
     status = models.IntegerField(choices=STATUS, default=0)
