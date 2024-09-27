@@ -138,6 +138,8 @@ main {
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
+/* Carousel Adjustments */
+  
 /* Visa News Page */
 .visa-news-title {
     margin-left: 3.5rem;
@@ -157,6 +159,14 @@ main {
 .card-header {
     background-color: #0f1e64;
     padding: .5rem .6rem;
+}
+
+p .card-text {
+    color: #040404;
+}
+
+a .card-text-decoration {
+   color: #000000;
 }
 
 .article-title {
@@ -193,6 +203,15 @@ main {
     left: -2px;
     background-color: #188181;
 }
+
+.hover-image {
+    transition: transform 0.3s ease; /* Smooth transition for the effect */
+}
+
+.hover-image:hover {
+    transform: scale(1.05); /* More visible hover effect */
+}
+
 
 .scale {
     width: 100%;

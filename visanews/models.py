@@ -9,7 +9,7 @@ class VisanewsArticle(models.Model):
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="visanews_author")
-    featured_image = CloudinaryField('image', default='placeholder')
+    visanews_image = CloudinaryField('image', default='placeholder')
     content = models.TextField()
     excerpt = models.TextField(blank=True)
     published_at = models.DateTimeField(blank=True, null=True)
