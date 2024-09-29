@@ -8,11 +8,11 @@
     <div class="container">
         <div class="row g-0">
             <div class="col-md-6 masthead-text">
-                <!-- Article title goes in these h1 tags -->
+                <!-- Article title -->
                 <h1 class="article-title">{{ article.title }}</h1>
                 <!-- Article author name | date.time -->
                 <p class="article-subtitle">{{ article.author }} | {{ article.created_on }}</p>
-                <!-- Add the excerpt -->
+                <!-- Excerpt -->
                 <p class="article-excerpt text-muted mt-2">{{ article.excerpt }}</p>
                 <!-- Social Media Share Icons -->
                 <div class="social-share-icons mt-3">
@@ -30,8 +30,13 @@
                     </a>
                 </div>
             </div>
+            <!-- Image -->
             <div class="d-none d-md-block col-md-6 masthead-image">
-                <img src="{% static 'images/default.jpg' %}" class="scale" alt="placeholder">
+                {% if article.featured_image %}
+            <img src="{{ article.featured_image.url }}" class="scale" alt="{{ article.title }}">
+            {% else %}
+            <img src="{% static 'images/placeholder.jpg' %}" class="scale" alt="Placeholder image" aria-label="Image not available for {{ article.title }}">
+            {% endif %}
             </div>
         </div>
     </div>

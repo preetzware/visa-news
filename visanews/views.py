@@ -103,7 +103,7 @@ def visanews_search_view(request):
         search_results = VisanewsArticle.objects.none()
     return render(request, 'visanews/visanews_search_results.html', {'results': search_results, 'query': query})
 
-
+# Like and Dislike Buttons
 @require_POST
 def like_article(request, article_id):
     article = get_object_or_404(VisanewsArticle, id=article_id)

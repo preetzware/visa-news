@@ -28,10 +28,10 @@
                 </div>
             </div>
             <div class="d-none d-md-block col-md-6 masthead-image">
-                {% if article.image %}
-                    <img src="{{ article.image.url }}" class="scale" alt="{{ article.title }}">
+                {% if article.visanews_image %}
+                    <img src="{{ article.visanews_image.url }}" class="scale" alt="{{ article.title }}">
                 {% else %}
-                    <img src="{% static 'images/default.jpg' %}" class="scale" alt="placeholder">
+                    <img src="{% static 'images/placeholder.jpg' %}" class="scale" alt="Placeholder image" aria-label="Image not available for {{ article.title }}">
                 {% endif %}
             </div>
         </div>
