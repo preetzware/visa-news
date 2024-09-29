@@ -11,4 +11,5 @@ urlpatterns = [
     path('like_article/<int:article_id>/', views.like_article, name='like_article'),  # Like article URL
     path('articles/<slug:slug>/edit_comment/<int:comment_id>', views.comment_edit, name='comment_edit'),
     path('articles/<slug:slug>/delete_comment/<int:comment_id>', views.comment_delete, name='comment_delete'),
+    path('forgot-password/', views.forgot_password, name='forgot_password'),
 ]

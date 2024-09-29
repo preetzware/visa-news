@@ -166,7 +166,15 @@ main {
   }
 
   .card {
-    border: none; /* Remove border to make it look seamless */
+    border: none;
+  }
+
+  .card-body {
+    border-radius: 0.75rem;
+  }
+
+  .p-4 {
+    padding: 0!important;
   }
   
   a.text-decoration-none {
@@ -216,6 +224,12 @@ main {
   .btn-primary {
     background-color: #007bff;
     border: none;
+    width: 150px;
+    height: 40px;
+  }
+
+  .d-grid {
+    justify-items: center; 
   }
   
   .btn-primary:hover {
@@ -324,6 +338,17 @@ a .card-text-decoration {
 
 .approval {
     color: rgb(222, 146, 168);
+}
+
+/* Login page */
+.min-vh-100 {
+    min-height: 0 !important;
+    background-color: #cdcefb48
+}
+
+.modal-content {
+    border: 0.2rem solid #b0c9e269; 
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
 
 /* Alert message */

@@ -8,22 +8,30 @@
 {% block content %}
 
 <div class="container d-flex justify-content-center align-items-center min-vh-100">
-    <div class="card shadow-lg" style="max-width: 450px; width: 100%; margin-top: 2rem;">
-        <div class="card-body p-5">
-            <h3 class="text-center fw-bold mb-4 text-dark">{% trans "Sign In" %}</h3>
-            <p class="text-center">{% blocktrans %}Welcome back to VisaGlobal.News! To leave a comment or like a post, 
-                please log in. If you have not created an account yet, then <a class="link text-primary" 
-                href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
-            <form class="login" method="POST" action="{% url 'account_login' %}">
-                {% csrf_token %}
-                {{ form.as_p }}
-                {% if redirect_field_value %}
-                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-                {% endif %}
-                <div class="d-grid">
-                    <button class="btn btn-primary fw-bold mt-3 mb-4" style="width: 40%; margin: 0 auto;" type="submit">{% trans "Sign In" %}</button>
-                </div>
-            </form>
+    <!-- Login Modal -->
+    <div class="modal-dialog modal-dialog-centered" style="max-width: 450px; width: 100%;">
+        <div class="modal-content">
+            <div class="modal-body p-5">
+                <h3 class="text-center fw-bold mb-4 text-dark">{% trans "Sign In" %}</h3>
+                <p class="text-center">{% blocktrans %}Welcome back to VisaGlobal.News! To leave a comment or like a post, 
+                    please log in. If you have not created an account yet, then{% endblocktrans %}
+                    <a class="link text-primary" href="{{ signup_url }}">{% blocktrans %}sign up{% endblocktrans %}</a> 
+                    {% blocktrans %}first.{% endblocktrans %}</p>
+                <form class="login" method="POST" action="{% url 'account_login' %}">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    {% if redirect_field_value %}
+                    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                    {% endif %}
+                    <div class="d-grid">
+                        <button class="btn btn-primary fw-bold mt-3 mb-4" style="width: 100%;" type="submit">{% trans "Sign In" %}</button>
+                    </div>
+                </form>
+                <!-- Forgot password link -->
+                <p class="text-center">{% blocktrans %}Forgot your password? {% endblocktrans %}
+                    <a class="link text-primary" href="{% url 'forgot_password' %}">{% blocktrans %}Reset here{% endblocktrans %}</a>
+                </p>
+            </div>
         </div>
     </div>
 </div>
