@@ -47,12 +47,17 @@ def article_detail(request, slug):
     })
 
 def index_view(request):
-    latest_articles = Article.objects.all().order_by('-published_at')[:3]  # Latest 3 articles for the carousel
-    other_articles = Article.objects.all().order_by('-published_at')[3:9]  # The rest of the articles for cards
-    return render(request, 'visa_app/index.html', {
+    latest_articles = Article.objects.order_by('-published_at')[:3]  # First three articles for carousel
+    featured_article = Article.objects.order_by('-published_at')[3]  # Fourth article for adjacent card
+    other_articles = Article.objects.order_by('-published_at')[4:7]  # Fifth, sixth, and seventh articles for the cards
+
+    context = {
         'latest_articles': latest_articles,
+        'featured_article': featured_article,
         'other_articles': other_articles,
-    })
+    }
+    return render(request, 'visa_app/index.html', context) 
+    
 
 def search_view(request):
     """
