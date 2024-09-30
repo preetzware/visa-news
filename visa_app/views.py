@@ -56,7 +56,7 @@ def index_view(request):
         'featured_article': featured_article,
         'other_articles': other_articles,
     }
-    return render(request, 'visa_app/index.html', context) 
+    return render(request, 'visa_app/index.html', context)
     
 
 def search_view(request):

@@ -128,70 +128,57 @@
     </main>
 
  <!-- Footer -->
- <footer class="bg-dark text-white py-5">
+<footer class="bg-dark text-white py-5">
     <div class="container">
-        <div class="row">
-           <!-- Popular Articles -->
-           <div class="col-lg-4 col-md-12 mb-4">
-            <h5>Popular Articles</h5>
-            {% if popular_articles %}
-                {% for article in popular_articles %}
-                    <div class="d-flex mb-3 align-items-center">
-                        <div class="col-6">
-                            <a href="{% url 'visanews_detail' article.slug %}" class="text-white">
-                                <img src="{{ article.visanews_image.url }}" alt="{{ article.title }}" class="img-fluid" style="max-height: 100px; object-fit: cover;">
-                            </a>
-                        </div>
-                        <div class="col-6">
-                            <a href="{% url 'visanews_detail' article.slug %}" class="text-white">
-                                <h6 class="mt-0">{{ article.title }}</h6>
-                                <p class="text-muted" style="font-size: 0.8rem;">Updated: {{ article.updated_at|date:"M d, Y" }}</p>
-                            </a>
-                        </div>
-                    </div>
-                {% endfor %}
-            {% else %}
-                <p>No popular articles available.</p>
-            {% endif %}
+        <div class="row text-center text-md-left">
+
+            <!-- About Us -->
+            <div class="col-lg-4 col-md-4 col-sm-12 mb-4">
+                <h5>About Us</h5>
+                <p>VisaGlobal.news is a leading travel news portal, providing the latest updates and insights
+                   on airlines, visas, travel advisories, and more. Stay connected and informed with the latest
+                   trends in travel.
+                </p>
             </div>
-        
+
             <!-- Contact Info -->
-            <div class="col-lg-4 col-md-6 mb-4 text-md-center">
+            <div class="col-lg-4 col-md-4 col-sm-12 mb-4">
                 <h5>Our Contact</h5>
-                <p><strong>Address:</strong></p>
-                <p><i class="fas fa-map-marker-alt"></i> 123 Travel St, City, Country</p>
-
-                <p><strong>Phone:</strong></p>
-                <p><i class="fas fa-phone"></i> <a href="tel:+1234567890" class="text-white text-decoration-none">+123 456 7890</a></p>
-
-                <p><strong>Email:</strong></p>
-                <p><i class="fas fa-envelope"></i> <a href="mailto:info@visaglobal.news" class="text-white text-decoration-none">info@visaglobal.news</a></p>
-
-                <p><strong>WhatsApp:</strong></p>
-                <p><i class="fab fa-whatsapp"></i> <a href="https://wa.me/1234567890" class="text-white text-decoration-none">+123 456 7890</a></p>
+                <div class="d-flex flex-column">
+                    <p><i class="fas fa-map-marker-alt"></i> 
+                        <a href="https://www.google.com/maps/search/?api=1&query=123+Travel+St,+City,+Country" 
+                        target="_blank" class="text-white text-decoration-none footer-links">123 Travel St, City, Country</a>
+                    </p>
+                    <p><i class="fas fa-phone"></i> +123 456 7890</p>
+                    <p><i class="fas fa-envelope"></i> info@visaglobal.news</p>
+                    <p><i class="fab fa-whatsapp"></i> +123 456 7890</p>
+                </div>
             </div>
 
-            <!-- Subscribe -->
-            <div class="col-lg-4 col-md-6 mb-4">
-                <h5>Subscribe to Our Newsletter</h5>
-                <form>
-                    <div class="input-group mb-3">
-                        <input type="email" class="form-control" placeholder="Your Email" required>
-                        <button class="btn btn-primary" type="submit">Subscribe</button>
-                    </div>
-                </form>
-                <p class="mt-3">Stay connected with the world of travel through us. Get the latest updates, insights on airlines, visas, travel advisories, and more through our newsletter.</p>
+            <!-- Social Media Icons -->
+            <div class="col-lg-4 col-md-4 col-sm-12 mb-4">
+                <h5>Connect with Us</h5>
+                <div class="d-flex flex-column align-items-center">
+                    <a href="https://www.facebook.com/" target="_blank" class="text-white mb-2 footer-links" aria-label="Link to Facebook">
+                        <i class="fab fa-facebook-f"></i> <strong>Facebook</strong>
+                    </a>
+                    <a href="https://twitter.com/" target="_blank" class="text-white mb-2 footer-links" aria-label="Link to Twitter">
+                        <i class="fab fa-twitter"></i> <strong>Twitter</strong>
+                    </a>
+                    <a href="https://www.instagram.com/" target="_blank" class="text-white mb-2 footer-links" aria-label="Link to Instagram">
+                        <i class="fab fa-instagram"></i> <strong>Instagram</strong>
+                    </a>
+                    <a href="https://www.linkedin.com/" target="_blank" class="text-white mb-2 footer-links" aria-label="Link to LinkedIn">
+                        <i class="fab fa-linkedin"></i> <strong>LinkedIn</strong>
+                    </a>
+                    <a href="https://www.youtube.com/" target="_blank" class="text-white footer-links" aria-label="Link to YouTube">
+                        <i class="fab fa-youtube"></i> <strong>YouTube</strong>
+                    </a>
+                </div>
             </div>
+
         </div>
         <hr class="text-white">
-        <div class="row">
-            <div class="col text-center">
-                <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" class="text-white me-3"><i class="fa-brands fa-x-twitter"></i></a>
-                <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="text-white"><i class="fa-brands fa-linkedin"></i></a>
-            </div>
-        </div>
         <div class="row mt-3">
             <div class="col text-center">
                 <p>&copy; 2024 VisaGlobal.News. All Rights Reserved.</p>

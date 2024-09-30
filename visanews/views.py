@@ -8,8 +8,6 @@ from .forms import CommentForm
 from django.views.decorators.http import require_POST
 import json
 
-VisanewsArticle.objects.filter(status=1).values('category__name').distinct()
-
 # Visanews Article List View
 class VisanewsList(generic.ListView):
     queryset = VisanewsArticle.objects.filter(status=1, category__name__icontains="Visa News")
@@ -20,16 +18,14 @@ class VisanewsList(generic.ListView):
 
 # Visanews Article Detail View
 def visanews_detail(request, slug):
-    queryset = VisanewsArticle.objects.filter(status=1)
-    article = get_object_or_404(queryset, slug=slug)
+    article = get_object_or_404(VisanewsArticle.objects.filter(status=1), slug=slug)
     like_count = article.number_of_likes()
     dislike_count = article.number_of_dislikes()
     
-    # Fetch all comments (approved and unapproved)
-    comments = article.comments.all().order_by("-created_on")
-    
-    # Count only approved comments
-    comment_count = comments.filter(approved=True).count()
+    comments = article.comments.filter(approved=True).order_by("-created_on")  # Filter for approved comments
+    comment_count = comments.count()
+
+    comment_form = CommentForm()  # Initialize the comment form
 
     if request.method == "POST":
         comment_form = CommentForm(data=request.POST)
@@ -41,13 +37,11 @@ def visanews_detail(request, slug):
             messages.success(request, 'Thank you! Your comment is awaiting approval.')
         else:
             messages.error(request, 'There was an error with your comment. Please try again.')
-    
-    comment_form = CommentForm()  # Initialize the comment form
 
     return render(request, "visanews/visanews_detail.html", {
         "article": article,
         "comments": comments,
-        "comment_count": comment_count,  # Correctly defined now
+        "comment_count": comment_count,
         "comment_form": comment_form,
         "like_count": like_count,
         "dislike_count": dislike_count,
@@ -56,37 +50,32 @@ def visanews_detail(request, slug):
 # Edit Comment View for Visanews
 @require_POST
 def comment_edit(request, slug, comment_id):
+    article = get_object_or_404(VisanewsArticle, slug=slug, status=1)
+    comment = get_object_or_404(Comment, pk=comment_id)
 
-    if request.method == "POST":
-        queryset = VisanewsArticle.objects.filter(status=1)
-        article = get_object_or_404(queryset, slug=slug)
-        comment = get_object_or_404(Comment, pk=comment_id)
-        comment_form = CommentForm(data=request.POST, instance=comment)
+    comment_form = CommentForm(data=request.POST, instance=comment)
 
     if comment_form.is_valid() and comment.user == request.user:
-            comment = comment_form.save(commit=False)
-            comment.article = article
-            comment.approved = False
-            comment.save()
-            messages.add_message(request, messages.SUCCESS, 'Comment Updated and awaiting approval!')
+        comment = comment_form.save(commit=False)
+        comment.article = article
+        comment.approved = False
+        comment.save()
+        messages.success(request, 'Comment Updated and awaiting approval!')
     else:
-            messages.add_message(request, messages.ERROR, 'Error updating comment!')
+        messages.error(request, 'Error updating comment!')
 
     return HttpResponseRedirect(reverse('visanews_detail', args=[slug]))
 
-
 # Delete Comment View for Visanews
-
 def comment_delete(request, slug, comment_id):
-    queryset = VisanewsArticle.objects.filter(status=1)
-    article = get_object_or_404(queryset, slug=slug)
+    article = get_object_or_404(VisanewsArticle.objects.filter(status=1), slug=slug)
     comment = get_object_or_404(Comment, pk=comment_id)
 
     if comment.user == request.user:
         comment.delete()
-        messages.add_message(request, messages.SUCCESS, 'Comment deleted!')
+        messages.success(request, 'Comment deleted!')
     else:
-        messages.add_message(request, messages.ERROR, 'You can only delete your own comments!')
+        messages.error(request, 'You can only delete your own comments!')
 
     return HttpResponseRedirect(reverse('visanews_detail', args=[slug]))
 
@@ -101,6 +90,7 @@ def visanews_search_view(request):
         ).distinct()
     else:
         search_results = VisanewsArticle.objects.none()
+    
     return render(request, 'visanews/visanews_search_results.html', {'results': search_results, 'query': query})
 
 # Like and Dislike Buttons

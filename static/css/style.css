@@ -588,50 +588,6 @@ background-color: #03db9e;
 }
 
 /* Footer Styles */
-.footer .card-title {
-    font-size: 0.9rem;
-    font-weight: bold;
-    color: #fff;
-}
-
-.footer .card-text {
-    font-size: 0.75rem;
-    color: #ddd;
-}
-
-.footer .fa-lg {
-    font-size: 1.5rem;
-}
-
-.footer .fa-map-marker-alt,
-.footer .fa-phone-alt,
-.footer .fa-envelope,
-.footer .fa-whatsapp {
-    font-size: 1.2rem;
-}
-
-.footer p a {
-    text-decoration: none;
-    transition: color 0.3s ease-in-out;
-}
-
-.footer p a:hover {
-    color: #ffc107;
-}
-
-.footer .btn-warning {
-    background-color: #ffc107;
-    color: #fff;
-    border: none;
-    font-weight: bold;
-}
-
-.footer .btn-warning:hover {
-    background-color: #e0a800;
-    color: #fff;
-}
- 
-/* General Footer Styles */
 .footer {
     padding: 2rem 0;
     background-color: #4fa3f3;
@@ -644,29 +600,19 @@ background-color: #03db9e;
     margin: 1rem 0;
 }
 
-/* Subscribe Section */
-.subscribe-section {
-    margin-bottom: 2rem;
+.footer-links {
+    font-size: 1rem; 
+    padding-right: 1rem;
+    text-decoration: none;
 }
 
-/* Popular Posts Section */
-.popular-posts {
-    margin-bottom: 2rem;
+.footer-links i {
+    font-size: 1.5rem;
+    padding-right: 0.5rem;
 }
 
-.popular-posts h5 {
-    font-weight: bold;
-}
-
-.popular-post-card {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1rem;
-}
-
-.popular-post-card img {
-    max-width: 100px;
-    margin-right: 1rem;
+.footer-links:hover {
+    color: blue!important;
 }
 
 /* Media Queries for Navbar max-width: 991.98px */
