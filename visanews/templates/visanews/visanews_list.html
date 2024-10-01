@@ -2,8 +2,8 @@
 {% load static %}
 
 {% block content %}
-    <h1 class="visa-news-title">Visa News</h1>
-    <div class="container">
+    <div class="container my-4">
+        <h1 class="featured">Visa News</h1>
         <div class="row">
             {% for article in articles %}
             <div class="col-md-4 mb-4">
@@ -30,12 +30,14 @@
                         <!-- Excerpt -->
                         <p class="card-text">{{ article.excerpt }}</p>
                         <!-- Author and Published At -->
-                        <p class="card-text text-muted">
-                            {{ article.author.username }} | {{ article.published_at|date:"M. d, Y, g:i a" }}
-                        </p>
+                        <div class="author-info">
+                            <p class="card-text author-name">{{ article.author.username }}</p>
+                            <hr class="author-divider">
+                            <p class="card-text date-time">{{ article.published_at|date:"M. d, Y, g:i a" }}</p>
                         </div>
                     </div>
                 </div>
+            </div>   
             {% empty %}
                 <p>No articles available.</p>
             {% endfor %}
