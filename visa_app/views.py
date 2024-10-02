@@ -32,8 +32,7 @@ def article_detail(request, slug):
             comment.save()
             messages.add_message(
                 request, messages.SUCCESS,
-                'Thank You! Your comment is awaiting approval.'
-            )
+                'Thank You! Your comment is awaiting approval.')
 
     comment_form = CommentForm()
 
@@ -45,6 +44,7 @@ def article_detail(request, slug):
         "like_count": like_count,
         "dislike_count": dislike_count,
     })
+
 
 def index_view(request):
     latest_articles = Article.objects.order_by('-published_at')[:3]  # First three articles for carousel

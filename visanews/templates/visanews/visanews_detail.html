@@ -121,14 +121,17 @@
                                 {{ comment.created_on }}
                             </span> wrote:
                         </p>
+                        <!-- Comment Body -->
                         <div id="visanews-comment{{ comment.id }}">
                             {{ comment.body | linebreaks }}
                         </div>
+                        <!-- Pending Approval Message -->
                         {% if not comment.approved and comment.user == user %}
                         <p class="approval-message">
                             This comment is awaiting approval.
                         </p>
                         {% endif %}
+                        <!-- Edit and Delete Buttons for Authenticated Users -->
                         {% if user.is_authenticated and comment.user == user %}
                         <button class="visanews-btn-delete" comment_id="{{ comment.id }}">Delete</button>
                         <button class="visanews-btn-edit" comment_id="{{ comment.id }}">Edit</button>

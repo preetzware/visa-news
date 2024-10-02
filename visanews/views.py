@@ -21,12 +21,11 @@ def visanews_detail(request, slug):
     article = get_object_or_404(VisanewsArticle.objects.filter(status=1), slug=slug)
     like_count = article.number_of_likes()
     dislike_count = article.number_of_dislikes()
+    comments = article.comments.all().order_by("-created_on")
+    comment_count = article.comments.filter(approved=True).count()
     
-    comments = article.comments.filter(approved=True).order_by("-created_on")  # Filter for approved comments
-    comment_count = comments.count()
-
-    comment_form = CommentForm()  # Initialize the comment form
-
+    comment_form = CommentForm()
+    
     if request.method == "POST":
         comment_form = CommentForm(data=request.POST)
         if comment_form.is_valid():
@@ -38,6 +37,8 @@ def visanews_detail(request, slug):
         else:
             messages.error(request, 'There was an error with your comment. Please try again.')
 
+        comment_form = CommentForm()
+
     return render(request, "visanews/visanews_detail.html", {
         "article": article,
         "comments": comments,
@@ -48,12 +49,14 @@ def visanews_detail(request, slug):
     })
 
 # Edit Comment View for Visanews
-@require_POST
-def comment_edit(request, slug, comment_id):
-    article = get_object_or_404(VisanewsArticle, slug=slug, status=1)
-    comment = get_object_or_404(Comment, pk=comment_id)
 
-    comment_form = CommentForm(data=request.POST, instance=comment)
+def comment_edit(request, slug, comment_id):
+
+    if request.method == "POST":
+
+          article = get_object_or_404(VisanewsArticle, slug=slug, status=1)
+          comment = get_object_or_404(Comment, pk=comment_id)
+          comment_form = CommentForm(data=request.POST, instance=comment)
 
     if comment_form.is_valid() and comment.user == request.user:
         comment = comment_form.save(commit=False)
