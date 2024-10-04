@@ -189,9 +189,10 @@ a.text-decoration-none {
 }
 
 .card-text {
-    font-size: 15px;
-    line-height: 1.2;
-    margin-left: 0.3em;     
+    font-size: 16px;
+    line-height: 1.4;
+    margin-left: 0.3em; 
+    margin-top: 0.5rem;    
     color: #191b1d;
 }
 
@@ -228,10 +229,6 @@ a.text-decoration-none {
 }
    
 /* Visa News Page */
-.hline {
-    border: 0.3rem solid #d30808; 
-}
-
 .featured {
     margin-bottom: 1.5rem;
     font-weight: bold;
@@ -277,7 +274,6 @@ a .card-text-decoration {
 .article-title {
     color:#0a0a0a;
     font-weight: bold;
-    margin-top: 4%;
 }
 
 .article-title:hover {
@@ -296,47 +292,10 @@ a .card-text-decoration {
     background-color: #6b6c6e;
 }
 
-.brand {
-    font-family: Lato, sans-serif;
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: #4A4A4F;
-}
-
-.image-container {
-    position: relative;
-}
-
-.image-flash {
-    position: absolute;
-    bottom: 5%;
-    min-width: 30%;
-    left: -2px;
-    background-color: #188181;
-}
-
-.hover-image {
-    transition: transform 0.2s ease;
-}
-
-.hover-image:hover {
-    transform: scale(1.05);
-}
-
-.scale {
-    width: 100%;
-    height: auto;
-}
-
-.custom-author {
-    background-color: #3596f0;
-    color: white;
-    margin: 4px;
-    text-transform: uppercase;
-}
-
-.approval {
-    color: rgb(222, 146, 168);
+.hline {
+    border: 0.3rem solid #d30808; 
+    opacity: 0.55!important;
+    margin: 1.2rem 0.7rem;
 }
 
 /* Login page */
@@ -375,14 +334,12 @@ a .card-text-decoration {
 
 /* Comments section */
 .row {
-    margin: 0 -15px;
+    margin: 15px -15px;
 }
 
 .col-md-8, .col-md-4 {
     padding: 0 15px;
 }
-
-/* General Container Margins */
 
 /* Masthead Styling */
 .masthead {
@@ -417,12 +374,6 @@ a .card-text-decoration {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.card-text {
-    font-size: 1.1rem;
-    line-height: 1.4;
-    margin-top: 0.5rem;
-}
-
 .author-info {
     margin-top: 15px;
     text-align: left; 
@@ -441,20 +392,9 @@ a .card-text-decoration {
     margin: 0px 8px 0 0;
 }
 
-hr:not([size]) {
-    height: 1.3px;
-}
-
 .date-time {
-    font-size: 0.875rem; /* Slightly smaller font for date */
-    color: #6c757d; /* Muted text color */
-}
-
-/* Comment Count Styling */
-.comment-count {
-    text-align: center;
-    font-size: 1.2rem;
-    font-weight: bold;
+    font-size: 0.875rem;
+    color: #6c757d;
 }
 
 /* Active state for the like button */
@@ -493,6 +433,11 @@ hr:not([size]) {
 }
 
 /* Styles for the comments card */
+.comment-count {
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
 
 .comments-card {
     border: 1px solid #dee2e6;
@@ -538,6 +483,8 @@ hr:not([size]) {
 .btn-primary {
     background-color: #007bff;
     border-color: #007bff;
+    align-content: center;
+    font-weight: bold;
 }
 
 .btn-primary:hover {
@@ -636,21 +583,7 @@ background-color: #03db9e;
     color: blue!important;
 }
 
-/* Media Queries for Navbar max-width: 991.98px */
-@media (max-width: 991.98px) {
-    .navbar-nav {
-        flex-direction: column; 
-        align-items: flex-start;
-    }
-
-    .nav-link {
-        width: 100%;
-        padding: 1rem;
-        text-align: left;
-    }
-}
-
-/* Media Queries for Navbar max-width:576px */
+/* Media Queries for Navbar max-width: 576px */
 @media (max-width: 576px) {
     .navbar-nav {
         text-align: center;
@@ -670,17 +603,6 @@ background-color: #03db9e;
     }
 }    
 
-/* Media Queries for cards max-width:992px */
-@media (max-width: 992px) { /* Medium screens */
-    .card-body h5, .card-body h4 {
-        font-size: 1.1rem; /* Slightly smaller on medium screens */
-    }
-
-    .card-body p {
-        font-size: 0.9rem;
-    }
-}
-
 /* Media Queries for Footer max-width:767px */
 @media (max-width: 767px) {
     .footer {
@@ -694,5 +616,37 @@ background-color: #03db9e;
 
     .popular-post-card img {
         margin-bottom: 1rem;
+    }
+}
+
+/* Media Queries for cards max-width:992px */
+@media (max-width: 992px) { /* Medium screens */
+    .card-body h5, .card-body h4 {
+        font-size: 1.1rem; /* Slightly smaller on medium screens */
+    }
+
+    .card-body p {
+        font-size: 0.9rem;
+    }
+}
+
+/* Media Queries for Navbar max-width: 991px */
+@media (max-width: 991px) {
+    .navbar-nav {
+        flex-direction: column; 
+        align-items: flex-start;
+    }
+
+    .nav-link {
+        width: 100%;
+        padding: 1rem;
+        text-align: left;
+    }
+}
+
+/* Article display page for article_detail & visanews_detail */
+@media (max-width: 991px) {
+    .col-md-6 .masthead {
+        width: 100% !important;
     }
 }

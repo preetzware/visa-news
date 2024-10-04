@@ -27,7 +27,7 @@
                     </a>
                 </div>
             </div>
-            <div class="d-none d-md-block col-md-6 masthead-image">
+            <div class="col-md-6 masthead-image">
                 {% if article.visanews_image %}
                     <img src="{{ article.visanews_image.url }}" class="scale" alt="{{ article.title }}">
                 {% else %}
@@ -164,25 +164,19 @@
 </div>
 
 <!-- Delete confirmation modal -->
-<div class="modal fade" id="visanewsDeleteModal" tabindex="-1"
-  aria-labelledby="deleteModalLabel" aria-hidden="true">
+<div class="modal fade" id="visanewsDeleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title"
-          id="deleteModalLabel">Delete comment?</h5>
-        <button type="button" class="btn-close"
-          data-bs-dismiss="modal" aria-label="Close"></button>
+        <h5 class="modal-title" id="deleteModalLabel">Delete comment?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        Are you sure you want to delete your comment?
-        This action cannot be undone.
+        Are you sure you want to delete your comment? This action cannot be undone.
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn-edit btn btn-secondary"
-          data-bs-dismiss="modal">Close</button>
-        <a id="visanewsDeleteConfirm" href="#" class="btn
-          btn-danger">Delete</a>
+        <button type="button" class="btn-edit btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <a id="visanewsDeleteConfirm" href="#" class="btn btn-danger">Delete</a>
       </div>
     </div>
   </div>
