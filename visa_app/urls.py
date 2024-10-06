@@ -12,4 +12,5 @@ urlpatterns = [
     path('articles/<slug:slug>/edit_comment/<int:comment_id>', views.comment_edit, name='comment_edit'),
     path('articles/<slug:slug>/delete_comment/<int:comment_id>', views.comment_delete, name='comment_delete'),
     path('forgot-password/', views.forgot_password, name='forgot_password'),
+    path('test-403/', views.test_403_view),  # This will trigger the 403 error
 ]

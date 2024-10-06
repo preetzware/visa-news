@@ -1,34 +1,37 @@
 {% extends "visa_app/base.html" %}
 
 {% block title %}
-404 Page Not Found
+500 Page Not Found
 {% endblock title %}
 
 {% block content %}
 
-<section>
-    <div class="message">Oops!
+<section class="error-page">
+  <div class="error-card">
+    <div class="text-center">
+      <h1 class="error-text">Oops!</h1>
+      <p class="error-text">
+        Something went wrong on our side.<br>
+          Please try again later.<br>
+      </p>
+      <button class="btn-error">
+        <a class="btn-link" href="{% url 'home' %}">Go back to Home</a>
+      </button>
     </div>
-    <div class="message2">Something went wrong on our side. Please try again later.</div>
-    <a href="{% url 'home' %}">Go back to Home</a>
-    <div class="container403">
-      <div class="neon">500:Internal Server Error</div>
-      <div class="door-frame">
+    <div class="container403 mx-auto">
+      <div class="neon mx-auto">500</div>
+      <div class="door-frame mx-auto">
         <div class="door">
-          <div class="rectangle">
-        </div>
-          <div class="handle">
-            </div>
+          <div class="rectangle"></div>
+          <div class="handle"></div>
           <div class="window">
-            <div class="eye">
-            </div>
-            <div class="eye eye2">
-            </div>
-            <div class="leaf">
-            </div> 
+            <div class="eye"></div>
+            <div class="eye eye2"></div>
+            <div class="leaf"></div> 
           </div>
         </div>  
       </div>
     </div>
+  </div>
 </section>
-{% endblock content %}
+{% endblock content %}   

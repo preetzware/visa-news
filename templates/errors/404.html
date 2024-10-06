@@ -5,30 +5,31 @@
 {% endblock title %}
 
 {% block content %}
-
-<section>
-    <div class="message">Oops!
+<section class="error-page">
+  <div class="error-card">
+    <div class="text-center">
+      <h1 class="error-text">Oops!</h1>
+      <p class="error-text">
+        Sorry, the page you're looking for does not exist.
+      </p>
+      <button class="btn-error">
+        <a class="btn-link" href="{% url 'home' %}">Go back to Home</a>
+      </button>
     </div>
-    <div class="message2">Sorry, the page you're looking for does not exist.</div>
-    <a href="{% url 'home' %}">Go back to Home</a>
-    <div class="container403">
-      <div class="neon">404: Page Not Found</div>
-      <div class="door-frame">
+    <div class="container403 mx-auto">
+      <div class="neon mx-auto">404</div>
+      <div class="door-frame mx-auto">
         <div class="door">
-          <div class="rectangle">
-        </div>
-          <div class="handle">
-            </div>
+          <div class="rectangle"></div>
+          <div class="handle"></div>
           <div class="window">
-            <div class="eye">
-            </div>
-            <div class="eye eye2">
-            </div>
-            <div class="leaf">
-            </div> 
+            <div class="eye"></div>
+            <div class="eye eye2"></div>
+            <div class="leaf"></div> 
           </div>
         </div>  
       </div>
     </div>
+  </div>
 </section>
 {% endblock content %}
