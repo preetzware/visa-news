@@ -5,6 +5,7 @@
 {% block head_title %}{% trans "Sign Out" %}{% endblock %}
 
 {% block content %}
+
 <div class="container d-flex justify-content-center align-items-center min-vh-100">
     <div class="card shadow-lg p-4" style="max-width: 500px; width: 100%; margin-top: 2rem;">
         <div class="card-body text-center">
@@ -16,11 +17,16 @@
                 {% if redirect_field_value %}
                 <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
                 {% endif %}
-                <div class="d-grid">
-                    <button class="btn btn-danger fw-bold" type="submit">{% trans 'Sign Out' %}</button>
+                <div class="d-grid mb-3">
+                    <button class="btn btn-danger fw-bold mb-3" type="submit">{% trans 'Sign Out' %}</button>
                 </div>
             </form>
+            <!-- Close Button -->
+            <div class="d-grid">
+                <button class="btn btn-secondary fw-bold" onclick="window.history.back();">{% trans 'Close' %}</button>
+            </div>
         </div>
     </div>
 </div>
+
 {% endblock %}
