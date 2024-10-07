@@ -7,6 +7,8 @@ from .models import Article, Comment
 from .forms import CommentForm
 from django.views.decorators.http import require_POST
 import json
+from visa_app.models import Article
+from visanews.models import VisanewsArticle
 
 # Create your views here.
 
@@ -65,23 +67,16 @@ def search_view(request):
    Including all these fields by using Django's Q objects that will allow to perform complex queries with OR conditions.
     """
     query = request.GET.get('query')
-    if query:
-        search_results = Article.objects.filter(
-            Q(title__icontains=query) | 
-            Q(excerpt__icontains=query) | 
-            Q(category__name__icontains=query)  # Assuming category has a `name` field
-        ).distinct()  # `distinct()` ensures no duplicate results
-    else:
-        search_results = Article.objects.none()  # Return no results if the query is empty
-    return render(request, 'visa_app/search_results.html', {'results': search_results, 'query': query}) 
-    
-    """
-    Q Objects: Django's Q objects is used to construct complex queries that check if the search term 
-    (query) is found in any of the title, excerpt, or category.name fields. 
-    icontains Lookup: The icontains lookup is used to perform case-insensitive partial matching. 
-    distinct() Method: This ensures that if an article matches in multiple fields, it only appears 
-    once in the search results.
-    """
+    articles = Article.objects.filter(title__icontains=query)  # Search in visa_app
+    visanews_articles = VisanewsArticle.objects.filter(title__icontains=query)  # Search in visanews
+
+    context = {
+        'articles': articles,
+        'visanews_articles': visanews_articles,
+        'query': query,
+    }
+
+    return render(request, 'visa_app/search_results.html', context) 
 
 @require_POST
 def like_article(request, article_id):

@@ -17,7 +17,7 @@
                     please log in. If you have not created an account yet, then{% endblocktrans %}
                     <a class="link text-primary" href="{{ signup_url }}">{% blocktrans %}sign up{% endblocktrans %}</a> 
                     {% blocktrans %}first.{% endblocktrans %}</p>
-                <form class="login" method="POST" action="{% url 'account_login' %}">
+                <form class="login" method="POST" action="{% url 'account_signup' %}">
                     {% csrf_token %}
                     {{ form.as_p }}
                     {% if redirect_field_value %}

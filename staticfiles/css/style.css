@@ -301,7 +301,8 @@ a .card-text-decoration {
 /* Login page */
 .min-vh-100 {
     min-height: 0 !important;
-    background-color: #cdcefb48
+    background-color: #cdcefb48;
+    margin-bottom: 3rem;
 }
 
 .modal-content {

@@ -2,20 +2,21 @@
 
 {% block content %}
 
-<!-- back to home button -->
+<!-- Back to home button -->
 <div class="container mt-3">
     <a href="{% url 'home' %}" class="btn btn-outline-dark">
         <i class="fas fa-arrow-left"></i> Back to Home
     </a>
 </div>
 
-<!-- search_results template -->
+<!-- Search results template -->
 <div class="container mt-5">
     <h1>Search Results for "{{ query }}"</h1>
 
-    {% if results %}
+    <h2>Visa Articles:</h2>
+    {% if articles %}
         <div class="row">
-            {% for article in results %}
+            {% for article in articles %}
                 <div class="col-md-4">
                     <div class="card mb-4">
                         <img src="{{ article.image.url }}" class="card-img-top" alt="{{ article.title }}">
@@ -30,7 +31,29 @@
             {% endfor %}
         </div>
     {% else %}
-        <p>No articles found matching your query.</p>
+        <p>No Visa articles found matching your query.</p>
+    {% endif %}
+
+    {% if visanews_articles %}
+        <h2>Visa News Articles:</h2>
+        <div class="row">
+            {% for visanews_article in visanews_articles %}
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <img src="{{ visanews_article.visanews_image.url }}" class="card-img-top" alt="{{ visanews_article.title }}">
+                        <div class="card-body">
+                            <h5 class="card-title"><a href="{{ visanews_article.get_absolute_url }}">{{ visanews_article.title }}</a></h5>
+                            <p><strong>Category:</strong> {{ visanews_article.category.name }}</p>
+                            <p>{{ visanews_article.excerpt }}</p>
+                            <p class="text-muted">{{ visanews_article.author }} | {{ visanews_article.published_at|date:"M. d, Y, g:i a" }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% elif not articles %}
+        <h2>Visa News Articles:</h2>
+        <p>No Visa News articles found matching your query.</p>
     {% endif %}
 </div>
 {% endblock %}
