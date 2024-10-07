@@ -1,5 +1,6 @@
 {% extends "visa_app/base.html" %}
 {% load static %}
+{% load cloudinary %} <!-- Load cloudinary template tags -->
 
 {% block title %}VisaGlobal.News{% endblock title %}
 
@@ -21,7 +22,7 @@
               {% if "placeholder" in article.featured_image.url %}
               <img src="{% static 'images/default.jpg' %}" class="d-block w-100" alt="placeholder image" style="height: 300px; object-fit: cover;">
               {% else %}
-              <img src="{{ article.featured_image.url }}" class="d-block w-100" alt="{{ article.title }}" style="height: 300px; object-fit: cover;">
+              <img src="{% cloudinary_url article.featured_image secure=True %}" class="d-block w-100" alt="{{ article.title }}" style="height: 300px; object-fit: cover;">
               {% endif %}
             </a>
             <div class="carousel-caption d-block">
@@ -51,7 +52,7 @@
           <div class="card-body text-center adj-body">
             <h5 class="card-title text-decoration-none adj-title">{{ featured_article.title }}</h5>
             <!-- Image below Title -->
-            <img src="{{ featured_article.featured_image.url }}" class="card-img-bottom img-fluid adj-image" alt="{{ featured_article.title }}">
+            <img src="{% cloudinary_url featured_article.featured_image secure=True %}" class="card-img-bottom img-fluid adj-image" alt="{{ featured_article.title }}">
           </div>
         </div>
         </a>
@@ -85,7 +86,7 @@
                 {% if "placeholder" in article.featured_image.url %}
                 <img class="card-img-top" src="{% static 'images/default.jpg' %}" alt="placeholder image">
                 {% else %}
-                <img class="card-img-top" src="{{ article.featured_image.url }}" alt="{{ article.title }}">
+                <img class="card-img-top" src="{% cloudinary_url article.featured_image secure=True %}" alt="{{ article.title }}">
                 {% endif %}
                  <!-- Article Excerpt -->
                  <p class="card-text">{{ article.excerpt }} </p>
@@ -103,6 +104,6 @@
         <p>No articles available.</p>
        {% endfor %}
       </div>
-
+    </div>
 
 {% endblock %}
