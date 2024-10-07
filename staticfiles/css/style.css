@@ -42,7 +42,7 @@ body {
 
 /* Subscribe button styling */
 .login-btn {
-    background-color: #ffc107; /* Bootstrap warning color */
+    background-color: #ffc107;
     color: #fff;
     border: none;
     padding: 0.5rem 0.6rem;
@@ -202,6 +202,10 @@ a.text-decoration-none {
 
 .hover-image:hover {
     transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+.card-img-top:hover {
     transition: transform 0.3s ease;
 }
 
@@ -825,7 +829,7 @@ a .btn-link {
 /* Media Queries for cards max-width:992px */
 @media (max-width: 992px) { /* Medium screens */
     .card-body h5, .card-body h4 {
-        font-size: 1.1rem; /* Slightly smaller on medium screens */
+        font-size: 1.1rem;
     }
 
     .card-body p {

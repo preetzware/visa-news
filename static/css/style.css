@@ -278,6 +278,7 @@ a .card-text-decoration {
 .article-title {
     color:#0a0a0a;
     font-weight: bold;
+    padding-top: 0.4rem;
 }
 
 .article-title:hover {
