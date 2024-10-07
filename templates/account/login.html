@@ -13,9 +13,9 @@
         <div class="modal-content">
             <div class="modal-body p-5">
                 <h3 class="text-center fw-bold mb-4 text-dark">{% trans "Sign In" %}</h3>
-                <p class="text-center">{% blocktrans %}Welcome back to VisaGlobal.News! To leave a comment or like a post, 
+                <p class="text-center">{% blocktrans %}Welcome back to VisaGlobal.News! To leave a comment or like an article, 
                     please log in. If you have not created an account yet, then{% endblocktrans %}
-                    <a class="link text-primary" href="{{ signup_url }}">{% blocktrans %}sign up{% endblocktrans %}</a> 
+                    <a class="link btn-primary text-decoration-none" href="{{ signup_url }}">{% blocktrans %}Sign Up{% endblocktrans %}</a> 
                     {% blocktrans %}first.{% endblocktrans %}</p>
                 <form class="login" method="POST" action="{% url 'account_signup' %}">
                     {% csrf_token %}
@@ -27,10 +27,6 @@
                         <button class="btn btn-primary fw-bold mt-3 mb-4" style="width: 100%;" type="submit">{% trans "Sign In" %}</button>
                     </div>
                 </form>
-                <!-- Forgot password link -->
-                <p class="text-center">{% blocktrans %}Forgot your password? {% endblocktrans %}
-                    <a class="link text-primary" href="{% url 'forgot_password' %}">{% blocktrans %}Reset here{% endblocktrans %}</a>
-                </p>
             </div>
         </div>
     </div>
