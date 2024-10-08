@@ -139,8 +139,3 @@ def comment_delete(request, slug, comment_id):
 
 def forgot_password(request):
     return render(request, 'visa_app/forgotpassword.html')
-
-
-def test_403_view(request):
-    # Manually raise a 403 error
-    raise PermissionDenied
