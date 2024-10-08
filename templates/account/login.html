@@ -12,12 +12,12 @@
     <div class="modal-dialog modal-dialog-centered" style="max-width: 450px; width: 100%;">
         <div class="modal-content">
             <div class="modal-body p-5">
-                <h3 class="text-center fw-bold mb-4 text-dark">{% trans "Sign In" %}</h3>
+                <h3 class="text-center fw-bold mb-4 text-dark">{% trans "LOGIN" %}</h3>
                 <p class="text-center">{% blocktrans %}Welcome back to VisaGlobal.News! To leave a comment or like an article, 
                     please log in. If you have not created an account yet, then{% endblocktrans %}
                     <a class="link btn-primary text-decoration-none" href="{{ signup_url }}">{% blocktrans %}Sign Up{% endblocktrans %}</a> 
                     {% blocktrans %}first.{% endblocktrans %}</p>
-                <form class="login" method="POST" action="{% url 'account_signup' %}">
+                <form class="login" method="POST" action="{% url 'account_login' %}">
                     {% csrf_token %}
                     {{ form.as_p }}
                     {% if redirect_field_value %}

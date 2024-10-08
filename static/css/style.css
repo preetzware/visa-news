@@ -561,6 +561,11 @@ background-color: #03db9e;
     margin-right: 5px;
 }
 
+/*  Sign-up Form  */
+.signuo-form {
+    background-color: #8fafdf
+}
+
 /*  Error pages styles  */
 .error-page {
     background-color: #323e4d;
