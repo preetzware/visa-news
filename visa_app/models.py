@@ -5,20 +5,26 @@ from django.urls import reverse
 
 STATUS = ((0, "Draft"), (1, "Published"))
 
+
 class Article(models.Model):
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="authored_articles")
+    author = models.ForeignKey(User, on_delete=models.CASCADE,
+                               related_name="authored_articles")
     excerpt = models.TextField(blank=True)
     published_at = models.DateTimeField(blank=True, null=True)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     featured_image = CloudinaryField('image', default='placeholder')
     content = models.TextField()
-    category = models.ForeignKey('Category', on_delete=models.SET_NULL, null=True, blank=True, related_name='visa_articles')
+    category = models.ForeignKey('Category', on_delete=models.SET_NULL,
+                                 null=True, blank=True,
+                                 related_name='visa_articles')
     status = models.IntegerField(choices=STATUS, default=0)
-    likes = models.ManyToManyField(User, related_name="liked_articles", blank=True)
-    dislikes = models.ManyToManyField(User, related_name="disliked_articles", blank=True)
+    likes = models.ManyToManyField(User, related_name="liked_articles",
+                                   blank=True)
+    dislikes = models.ManyToManyField(User, related_name="disliked_articles",
+                                      blank=True)
 
     class Meta:
         ordering = ['-published_at']
@@ -34,7 +40,7 @@ class Article(models.Model):
 
     def number_of_dislikes(self):
         return self.dislikes.count()
-  
+
     # Methods to generate social media share URLs
     def get_facebook_share_url(self):
         base_url = "https://www.facebook.com/sharer/sharer.php?u="
@@ -42,7 +48,7 @@ class Article(models.Model):
 
     def get_twitter_share_url(self):
         base_url = "https://twitter.com/intent/tweet?url="
-        return f"{base_url}{self.get_absolute_url()}&text={self.title}"
+        return (f"{base_url}{self.get_absolute_url()}&text={self.title}")
 
     def get_linkedin_share_url(self):
         base_url = "https://www.linkedin.com/sharing/share-offsite/?url="
@@ -50,11 +56,10 @@ class Article(models.Model):
 
     def get_whatsapp_share_url(self):
         base_url = "https://api.whatsapp.com/send?text="
-        return f"{base_url}{self.title} {self.get_absolute_url()}"
+        return (f"{base_url}{self.title} {self.get_absolute_url()}")
 
     def get_share_icon(self):
-        # Optional method if you want to return a general share URL or an icon class
-        return "icon-class-name"  # Replace with your icon class or logic
+        return "icon-class-name"
 
 
 class Category(models.Model):
@@ -69,8 +74,10 @@ class Category(models.Model):
 
 
 class Comment(models.Model):
-    article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name="comments")
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="comments")
+    article = models.ForeignKey(Article, on_delete=models.CASCADE,
+                                related_name="comments")
+    author = models.ForeignKey(User, on_delete=models.CASCADE,
+                               related_name="comments")
     body = models.TextField()
     approved = models.BooleanField(default=False)
     created_on = models.DateTimeField(auto_now_add=True)

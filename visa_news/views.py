@@ -27,12 +27,14 @@ def handler403(request, exception):
     '''
     return render(request, 'errors/403.html', status=403)
 
+
 def trigger_500_error(request):
     '''
     View to trigger a 500 error (Internal Server Error) for testing
     '''
     # Simulate an uncaught exception to trigger the 500 error handler
     raise Exception("This is a simulated server error.")
+
 
 # View to trigger 403 error
 def trigger_403_error(request):

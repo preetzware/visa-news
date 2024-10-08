@@ -10,12 +10,14 @@ import json
 from visa_app.models import Article
 from visanews.models import VisanewsArticle
 
+
 # Create your views here.
 
 class ArticleList(generic.ListView):
     queryset = Article.objects.all()
     template_name = "visa_app/index.html"
     paginate_by = 6
+
 
 def article_detail(request, slug):
     queryset = Article.objects.filter(status=1)
@@ -34,7 +36,8 @@ def article_detail(request, slug):
             comment.save()
             messages.add_message(
                 request, messages.SUCCESS,
-                'Thank You! Your comment is awaiting approval.')
+                'Thank You! Your comment is awaiting approval.'
+            )
 
     comment_form = CommentForm()
 
@@ -49,9 +52,9 @@ def article_detail(request, slug):
 
 
 def index_view(request):
-    latest_articles = Article.objects.order_by('-published_at')[:3]  # First three articles for carousel
-    featured_article = Article.objects.order_by('-published_at')[3]  # Fourth article for adjacent card
-    other_articles = Article.objects.order_by('-published_at')[4:7]  # Fifth, sixth, and seventh articles for the cards
+    latest_articles = Article.objects.order_by('-published_at')[:3]
+    featured_article = Article.objects.order_by('-published_at')[3]
+    other_articles = Article.objects.order_by('-published_at')[4:7]
 
     context = {
         'latest_articles': latest_articles,
@@ -59,16 +62,18 @@ def index_view(request):
         'other_articles': other_articles,
     }
     return render(request, 'visa_app/index.html', context)
-    
+
 
 def search_view(request):
     """
-   View for users to be able to search articles by matching words in the title, excerpt, and category fields of the articles. 
-   Including all these fields by using Django's Q objects that will allow to perform complex queries with OR conditions.
+    View for users to be able to search articles by matching words
+    in the title, excerpt, and category fields of the articles.
+    Including all these fields by using Django's Q objects that
+    will allow to perform complex queries with OR conditions.
     """
     query = request.GET.get('query')
-    articles = Article.objects.filter(title__icontains=query)  # Search in visa_app
-    visanews_articles = VisanewsArticle.objects.filter(title__icontains=query)  # Search in visanews
+    articles = Article.objects.filter(title__icontains=query)
+    visanews_articles = VisanewsArticle.objects.filter(title__icontains=query)
 
     context = {
         'articles': articles,
@@ -76,7 +81,8 @@ def search_view(request):
         'query': query,
     }
 
-    return render(request, 'visa_app/search_results.html', context) 
+    return render(request, 'visa_app/search_results.html', context)
+
 
 @require_POST
 def like_article(request, article_id):
@@ -99,10 +105,9 @@ def like_article(request, article_id):
 
 def comment_edit(request, slug, comment_id):
     """
-    view to edit comments
+    View to edit comments.
     """
     if request.method == "POST":
-
         queryset = Article.objects.filter(status=1)
         article = get_object_or_404(queryset, slug=slug)
         comment = get_object_or_404(Comment, pk=comment_id)
@@ -113,16 +118,18 @@ def comment_edit(request, slug, comment_id):
             comment.article = article
             comment.approved = False
             comment.save()
-            messages.add_message(request, messages.SUCCESS, 'Comment Updated and awaiting approval!')
+            messages.add_message(request, messages.SUCCESS,
+                                 'Comment Updated and awaiting approval!')
         else:
-            messages.add_message(request, messages.ERROR, 'Error updating comment!')
+            messages.add_message(request, messages.ERROR,
+                                 'Error updating comment!')
 
     return HttpResponseRedirect(reverse('article_detail', args=[slug]))
 
 
 def comment_delete(request, slug, comment_id):
     """
-    view to delete comment
+    View to delete comment.
     """
     queryset = Article.objects.filter(status=1)
     article = get_object_or_404(queryset, slug=slug)
@@ -132,7 +139,8 @@ def comment_delete(request, slug, comment_id):
         comment.delete()
         messages.add_message(request, messages.SUCCESS, 'Comment deleted!')
     else:
-        messages.add_message(request, messages.ERROR, 'You can only delete your own comments!')
+        messages.add_message(request, messages.ERROR,
+                             'You can only delete your own comments!')
 
     return HttpResponseRedirect(reverse('article_detail', args=[slug]))
 

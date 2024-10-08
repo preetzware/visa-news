@@ -5,20 +5,30 @@ from cloudinary.models import CloudinaryField
 
 STATUS = ((0, "Draft"), (1, "Published"))
 
+
 class VisanewsArticle(models.Model):
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="visanews_author")
+    author = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="visanews_author"
+    )
     visanews_image = CloudinaryField('image', default='placeholder')
     content = models.TextField()
     excerpt = models.TextField(blank=True)
     published_at = models.DateTimeField(blank=True, null=True)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    category = models.ForeignKey('Category', on_delete=models.SET_NULL, null=True, blank=True, related_name='visanews_articles')
+    category = models.ForeignKey(
+        'Category', on_delete=models.SET_NULL, null=True, blank=True,
+        related_name='visanews_articles'
+    )
     status = models.IntegerField(choices=STATUS, default=0)
-    likes = models.ManyToManyField(User, related_name="visanews_likes", blank=True)
-    dislikes = models.ManyToManyField(User, related_name="visanews_dislikes", blank=True)
+    likes = models.ManyToManyField(
+     User, related_name="visanews_likes", blank=True
+    )
+    dislikes = models.ManyToManyField(
+     User, related_name="visanews_dislikes", blank=True
+    )
 
     class Meta:
         ordering = ['-published_at']
@@ -55,6 +65,7 @@ class VisanewsArticle(models.Model):
     def get_share_icon(self):
         return "icon-class-name"
 
+
 class Category(models.Model):
     name = models.CharField(max_length=100, unique=True)
     slug = models.SlugField(max_length=100, unique=True)
@@ -65,13 +76,24 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+
 class Comment(models.Model):
-    article = models.ForeignKey(VisanewsArticle, on_delete=models.CASCADE, related_name='comments')
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='visanews_comments')
+    article = models.ForeignKey(
+        VisanewsArticle, on_delete=models.CASCADE, related_name='comments'
+    )
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='visanews_comments'
+    )
     body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     approved = models.BooleanField(default=False)
-    parent = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='replies')
+    parent = models.ForeignKey(
+     'self',
+     on_delete=models.CASCADE,
+     null=True,
+     blank=True,
+     related_name='replies'
+    )
 
     class Meta:
         ordering = ['created_on']
