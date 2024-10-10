@@ -121,6 +121,7 @@ DATABASES = {
 CSRF_TRUSTED_ORIGINS = [
     "https://*.codeinstitute-ide.net/",
     "https://*.herokuapp.com",
+    "https://visa-global-news-3e0847e1af66.herokuapp.com",
 ]
 
 # Password validation
