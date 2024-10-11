@@ -1,7 +1,6 @@
 /* global bootstrap */
 const visanewsEditButtons = document.querySelectorAll('.visanews-btn-edit');
 const visanewsDeleteButtons = document.querySelectorAll('.visanews-btn-delete');
-const visanewsCommentText = document.getElementById('visanews-commentText');
 const visanewsSubmitButton = document.getElementById('visanews-submitButton');
 const visanewsCommentForm = document.getElementById('visanews-commentForm');
 const visanewsDeleteModal = document.getElementById('visanewsDeleteModal');

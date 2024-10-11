@@ -121,17 +121,18 @@ def like_article(request, article_id):
     action = json.loads(request.body).get('action')
 
     if action == 'like':
-        article.likes.add(request.user)
-
-    if request.user in article.dislikes.all():
-        article.dislikes.remove(request.user)
-
+        if request.user in article.likes.all():
+            article.likes.remove(request.user)
+        else:
+            article.likes.add(request.user)
+            article.dislikes.remove(request.user)
 
     elif action == 'dislike':
-        article.dislikes.add(request.user)
-
-    if request.user in article.likes.all():
-        article.likes.remove(request.user)
+        if request.user in article.dislikes.all():
+            article.dislikes.remove(request.user)
+        else:
+            article.dislikes.add(request.user)
+            article.likes.remove(request.user)
 
     return JsonResponse({
         'success': True,
