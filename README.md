@@ -1,6 +1,6 @@
 # VisaGlobal.News
-<hr>
-![VisaGlobal.News website Image]()
+
+![Am I Responsive](./assets/readme-img/am-i-responsive.png)
 
 VisaGlobal.News is a full-stack web application that provides users with the latest news and updates on visas, airlines, travel advisories, and other travel-related topics. The project is built using the Django framework for the backend, with HTML, CSS, Bootstrap, and JavaScript powering the frontend.
 
@@ -109,14 +109,19 @@ The font used in this project is Roboto Slab, which compliments the design of th
 ![Font]()
 
 ### Wireframes
-- Home
-![Home Page ]()
+- Home Page
+![Homepage Laptop & Desktop Size ](./assets/wireframes-img/web-fullscreen.jpg)
+
+- ![Homepage Tablet & Mobile Size ](./assets/wireframes-img/tablet-mob-wf.jpg)
 
 - Visa News Page
-![Home Page ]()
+![Visa News Page]()
 
 - Article_Detail Page
-![Home Page ]()
+![Single Article Page ](./assets/wireframes-img/article-wf.jpg)
+
+- Sign Up Page
+![Sign Up Page](./assets/wireframes-img/signup-wf.jpg)
 
 ### Agile Methodology
 #### Overview
@@ -126,40 +131,43 @@ It is worth-mentioning that during the development of my project, I adjusted my 
 
 #### EPICS(Milestones)
 The user stories are organized into eight EPICS or Milestones. Additionally, a Milestone named "Project Backlog" was created to track any extra features, bugs, or uncompleted tasks that emerged during the development process. <br>
-![Milestones]()
+![Milestones](./assets/readme-img/milestones.jpg)
 
 #### User Stories issues
 The structure of each user story issue consists of the user story itself, followed by acceptance criteria that define the specific requirements that must be met for the feature to be considered complete. These criteria serve as a clear guideline for testing and validating the functionality of the feature, ensuring it aligns with the user's needs and expectations. <br>
-![User Story]()
+![User Story](./assets/readme-img/user-story.jpg)
 
 #### MoSCoW prioritization
 The MoSCoW prioritization technique was employed to efficiently rank the project’s features and requirements based on their significance. "MoSCoW" stands for "Must have, Should have, Could have, and Won't have," with each category helping to organize and prioritize features. This approach guided the development process, ensuring that the most essential elements were addressed first. <br>
-![User Story]()
+![User Story](./assets/readme-img/moscow-prioritization.jpg)
 
 #### GitHub Projects
 For the development of the project, I made use of a simple Kanban Board structure, organized into columns like To Do, In Progress, Done, and Backlog. This layout offered a clear, efficient way to track task progress while helping to visualize and manage the workflow effectively. <br>
-![User Story]()
+![User Story](./assets/readme-img/projectboard.jpg)
 
 ## Features
 ### Navbar
 The navbar, a consistent feature across all pages, was built using Bootstrap with custom modifications to ensure full responsiveness. The VisaGlobal.News logo, created via [logodesign.ai website](https://www.logodesign.ai), is positioned on the left and functions as a link to the homepage. On the right, there are navigation links that allow users to move easily throughout the website. If a user is not authenticated, the links displayed include Home, Visanews, Signup, Login and the search icon. The search icon reveals a search bar and a "Go" button when clicked, enabling users to search for articles on both the Homepage and Visa News page. The search view has been designed using metrics such as article titles, excerpts, and categories to enable users to efficiently find relevant articles. By leveraging these key elements, users can quickly identify content that meets their interests, enhancing their overall experience on the platform.
 
-![Unauthenticated User's nav view]()
+![Unauthenticated User's nav view](./assets/readme-img/unauthen-navbar.png)
 
  If the user is authenticated, they will see navigation links for Home, Visa News, Log Out, along with a personalized greeting, "Hi (username), you're logged in!" and the search icon. To enhance user experience, the active navigation link is underlined with a border, providing a visual cue to indicate the page the user is currently viewing.
 
- ![Authenticated User's nav view]()
+ ![Authenticated User's nav view](./assets/readme-img/authenticated-navbar.png)
 
  ### Footer
  The footer is divided into three sections: **About**, which provides an introduction to VisaGlobal.News; **Our Contact**, which presents the contact details; and **Connect with Us**, which features social media icons and links that allow users to connect with VisaGlobal.News by opening the links in a new tab.
 
- ![Footer]()
+ ![Footer](./assets/readme-img/visanews-footer.png)
 
 ### Home
 #### Carousel Section
 This section has been incorporated into the homepage to showcase the three most recent news articles, providing users with quick access to the latest updates. Additionally, a fourth story is positioned adjacent to the carousel, ensuring that visitors can easily discover important content at a glance.
 
+ ![Carousel Section](./assets/readme-img/carousel.png)
+
 ### Visa News Page
+
 
 ### Article_detail Page
 
@@ -203,13 +211,12 @@ This page consists of warning message with two buttons - one to go back and one 
 
 ### Error Pages
 - 404
+![404](./assets/readme-img/404-errorpage.png)
 
-![404]()
 - 403
-
 ![403]()
-- 500
 
+- 500
 ![500]()
 
 ## Future Features
