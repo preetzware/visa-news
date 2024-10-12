@@ -161,53 +161,60 @@ The navbar, a consistent feature across all pages, was built using Bootstrap wit
  ![Footer](./assets/readme-img/visanews-footer.png)
 
 ### Home
-#### Carousel Section
-This section has been incorporated into the homepage to showcase the three most recent news articles, providing users with quick access to the latest updates. Additionally, a fourth story is positioned adjacent to the carousel, ensuring that visitors can easily discover important content at a glance.
 
- ![Carousel Section](./assets/readme-img/carousel.png)
+The home page consists of the carousel section which has been incorporated to showcase the three most recent news articles, providing users with quick access to the latest updates. Additionally, a fourth story is positioned adjacent to the carousel, ensuring that visitors can easily discover important content at a glance. Below this section, three article cards feature the other latest visa news.
+
+ ![Homepage](./assets/readme-img/home-page.jpeg)
 
 ### Visa News Page
+The Visa News page contains three pages of article cards, each with pagination for easy navigation.
 
+![Visa News Page](./assets/readme-img/visa-news-page.jpeg)
 
 ### Article_detail Page
+![Visa News Page](./assets/readme-img/article-page.jpeg)
 
+### Sign Up Page
+
+![Sign Up Page](./assets/readme-img/sign-up-page.png)
 
 #### Flash Messages
-Flash messages have been utilized to provide feedback to users whenever they perform CRUD operations, as well as during the sign-in and sign-out processes. These messages help inform users about the success or failure of their actions, enhancing the overall user experience.
+Flash messages are used to give users feedback whenever they perform CRUD operations or during the sign-in and sign-out processes. These messages notify users about the success or failure of their actions, improving the overall user experience.
 
-![messages]()
+![Signed-in message](./assets/readme-img/sign-in-flash.png)
 
-#### Unauthenticated User Prompted
+![logout message](./assets/readme-img/logout-flash.png)
 
+![After submitting comment message](./assets/readme-img/comment-approval-msg.jpeg)
 
-![user account]()
+![After editing comment message](./assets/readme-img/edit-comment.jpeg)
 
+![After comment deleted](./assets/readme-img/comment-deleted-msg.jpegg)
 
-![]()
 
 ### Login page
 Consist of a form with username and password. 
-![Sign In]()
+![Log In](./assets/readme-img/login-page.png)
 
 ### Sign Up page
 The sign-up process features a form that includes fields for the user's email, username, password, and password confirmation. There is also a link for users who already have an account to log in. At the bottom of the form, a sign-up button allows users to submit their information. Once signed up, users are automatically logged in and redirected to the homepage.
 
-![Sign Up]()
+![Sign Up](./assets/readme-img/sign-up-page.png)
 
 ### Sign out confirmation
 When the user clicks the logout link in the navigation bar, a modal with a warning message pops up. It also features two buttons: one to close the modal and stay on the actual page and another to proceed with logging out.
 
-![log out confirmation]()
+![log out confirmation](./assets/readme-img/logout-modal.png)
 
 ### Edit Comment
-The edit profie page renders a form with prefilled fields with the existing information for this user. It consists of profie image, name, username, email, phone, town, county and about me section. Below that is the submit button which will update the profile details once submitted. 
+Editing comment can be done in the text field below the article once the user clicks on the edit button. Once submitted, a flash message will display. 
 
-![Edit Comment]()
+![Edit Comment](./assets/readme-img/edit-comment.jpeg)
 
 ### Delete Comment Confirmation
-This page consists of warning message with two buttons - one to go back and one to delete the profile. Delete profile is in red to indicate danger. Once clicked the profile is deleted and the user is redirected to We are sorry to see you go page
+When user clicks on delete button below their comment, a warning message appears with options to delete or to close window.
 
-![Delete Comment]()
+![Delete Comment](./assets/readme-img/delete-confirmation.png)
 
 ### Error Pages
 - 404
