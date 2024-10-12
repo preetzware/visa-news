@@ -233,9 +233,43 @@ Add a newsletter subscription feature that allows users to sign up for regular u
 Incorporate multilingual support to make the website accessible to a wider audience. This feature would allow users to select their preferred language for content, making the site more inclusive and user-friendly for non-English speakers.
 
 ## Testing
-Testing documentation can be found [here.]()
+Testing documentation can be found [here.](TESTING.md)
 
 ## Bugs
+**Known Bugs**
+
+1. **URL conflict issues**  
+   During the development process of my project, I experienced a bug with a URL conflict, and you had to update the urlpattern in visa_app/urls.py to resolve it.  `django-admin-interface` package, I encountered duplicate JavaScript files, which led to unexpected behaviors in the admin panel. This required careful file management to remove duplicates and ensure only the necessary scripts were loaded.
+
+2. **Styles Not Connecting to Login/Signup Pages**  
+   I faced issues where the styles were not properly connecting to the login and signup pages. The root cause was a misnamed directory; I had renamed the default `account` directory to `accounts` in an attempt to improve syntax. This also required reverting changes in `urls.py` to restore proper functionality.
+
+3. **Static Files Issues with .gitignore**  
+   While working on static files, I accidentally added critical files to `.gitignore`, which caused them to be excluded from commits. This mistake led to untidy and incomplete commits. After reverting these changes, I had to clean up the commit history to maintain a professional repository.
+
+4. **Heroku Deployment Forms Bug**  
+   A bug arose during Heroku deployment where forms were not rendering correctly. Clearing the cache resolved this issue.
+
+5. **Styles not reflecting on deployed website**  
+   A few times I had this issue where I applied some styles that would not reflect on the deployed website. After debugging, I realized it was due to not running `collectstatic` in the terminal to collect the latest CSS changes. After making CSS changes and running this command, this issue was completely resolved.
+
+6. **Like and Dislike Buttons not Functioning**  
+   At one point, stylesheet changes were not appearing even after refreshing the page. The solution was setting `DEBUG = True`, which allowed the changes to be reloaded correctly.
+
+7. **Mixed Content warning for Cloudinary Images**  
+   During development, Meta's restrictions blocked VPN access to Threads in the EU, which impacted testing and deployment workflows involving social media integrations. I did not include Threads in the social media links.
+
+8. **Log Out of Admin Account When Testing Locally**  
+   A lesson learned was to always log out of the admin account when testing on localhost. Remaining logged in as an admin affected the behavior of allauth forms, leading to misleading results. The fix for this to log in using a different browser./
+
+9. **Server Error 500 on New Account Creation**  
+   Users encountered a server error (500) when attempting to create a new account. This required debugging to identify issues within the account creation logic and ensure smooth user onboarding.
+
+10. **Race Booking Event Model**  
+   Initially, I wanted to implement a separate login setup for race entrants who are not club members to prevent them from accessing the members' area. This required setting up a completely different account system. However, due to time constraints and project requirements, I decided to abandon this model. In practice, the club uses an external service provider for event registration and payment, which alleviates the need for this feature.
+
+---
+
 
 ## Technologies And Languages
 ### Languages Used
