@@ -131,8 +131,10 @@ The Permission and Group models collaborate to regulate access within the applic
 
 
 ### Fonts
-The font used in this project is Roboto Slab, which compliments the design of the website. <br>
-![Font]()
+For the VisaGlobal.News website, I opted for a straightforward and professional approach to typography. In the Django admin interface, where I manage and add articles, I used Helvetica due to limited font family options. This font offers a clean, modern look that complements the overall design of the site.
+
+For the titles, excerpts, footer, and rest, I leveraged the system UI font that comes built-in with Bootstrap, which allowed me to maintain a cohesive style without importing additional fonts like Google Fonts. This combination keeps the website clean, user-friendly, and consistent across different devices and browsers. <br>
+
 
 ### Wireframes
 - Home Page
@@ -141,7 +143,7 @@ The font used in this project is Roboto Slab, which compliments the design of th
 - ![Homepage Tablet & Mobile Size ](./assets/wireframes-img/tablet-mob-wf.jpg)
 
 - Visa News Page
-![Visa News Page]()
+![Visa News Page](./assets/wireframes-img/visa-news-wf.jpg)
 
 - Article_Detail Page
 ![Single Article Page ](./assets/wireframes-img/article-wf.jpg)
@@ -244,13 +246,13 @@ When user clicks on delete button below their comment, a warning message appears
 
 ### Error Pages
 - 404
-![404](./assets/readme-img/404-errorpage.png)
+![404](./assets/readme-img/400-error.jpg)
 
 - 403
-![403]()
+![403](./assets/readme-img/403-error.png)
 
 - 500
-![500]()
+![500](./assets//readme-img/500-error.png)
 
 ## Future Features
 1. User Profiles and Personalization:
@@ -267,9 +269,9 @@ Incorporate multilingual support to make the website accessible to a wider audie
 
 ## Testing
 Testing documentation can be found [here.](TESTING.md)
-
+ 
 ## Bugs
-**Known Bugs**
+#### **Fixed Bugs** ####
 
 1. **URL conflict issues**  
    During the development process of my project, I experienced a bug with a URL conflict, and you had to update the urlpattern in visa_app/urls.py to resolve it.  `django-admin-interface` package, I encountered duplicate JavaScript files, which led to unexpected behaviors in the admin panel. This required careful file management to remove duplicates and ensure only the necessary scripts were loaded.
@@ -300,6 +302,10 @@ Testing documentation can be found [here.](TESTING.md)
 
 10. **Race Booking Event Model**  
    Initially, I wanted to implement a separate login setup for race entrants who are not club members to prevent them from accessing the members' area. This required setting up a completely different account system. However, due to time constraints and project requirements, I decided to abandon this model. In practice, the club uses an external service provider for event registration and payment, which alleviates the need for this feature.
+
+ ### **Unfixed Bugs** ###
+ **Console and Terminal error messages**
+ 1. Mixed Content -
 
 ---
 

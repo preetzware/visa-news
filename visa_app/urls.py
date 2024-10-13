@@ -12,7 +12,7 @@ urlpatterns = [
          name='article_detail'),
     path('like_article/<int:article_id>/', views.like_article,
          name='like_article'),
-    path('articles/<slug:slug>/edit_comment/<int:comment_id>/',
+    path('articles/<slug:slug>/edit_comment/<int:comment_id>', 
          views.comment_edit, name='comment_edit'),
     path('articles/<slug:slug>/delete_comment/<int:comment_id>/',
          views.comment_delete, name='comment_delete'),

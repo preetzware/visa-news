@@ -39,3 +39,5 @@ def trigger_500_error(request):
 # View to trigger 403 error
 def trigger_403_error(request):
     raise PermissionDenied("Testing the 403 error.")
+
+

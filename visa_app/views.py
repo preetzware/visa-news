@@ -7,7 +7,6 @@ from .models import Article, Comment
 from .forms import CommentForm
 from django.views.decorators.http import require_POST
 import json
-from visa_app.models import Article
 from visanews.models import VisanewsArticle
 
 
