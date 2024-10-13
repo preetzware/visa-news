@@ -217,7 +217,7 @@ Flash messages are used to give users feedback whenever they perform CRUD operat
 
 ![After editing comment message](./assets/readme-img/edit-comment.jpeg)
 
-![After comment deleted](./assets/readme-img/comment-deleted-msg.jpegg)
+![After comment deleted](./assets/readme-img/comment-deleted-msg.jpeg)
 
 
 ### Login page
@@ -274,16 +274,16 @@ Testing documentation can be found [here.](TESTING.md)
 #### **Fixed Bugs** ####
 
 1. **URL conflict issues**  
-   During the development process of my project, I experienced a bug with a URL conflict, and you had to update the urlpattern in visa_app/urls.py to resolve it.  `django-admin-interface` package, I encountered duplicate JavaScript files, which led to unexpected behaviors in the admin panel. This required careful file management to remove duplicates and ensure only the necessary scripts were loaded.
+   During the development process of my project, I experienced a bug with a URL conflict, and had to update the urlpattern in visa_app/urls.py to resolve it. 
 
-2. **Styles Not Connecting to Login/Signup Pages**  
-   I faced issues where the styles were not properly connecting to the login and signup pages. The root cause was a misnamed directory; I had renamed the default `account` directory to `accounts` in an attempt to improve syntax. This also required reverting changes in `urls.py` to restore proper functionality.
+2. **Filepath issues leading to 404 errors**  
+   During the development of the project, I had encountered several filepath issues that caused 404 errors. These errors occurred when URLs didn't point to the correct files or resources, making parts of the website inaccessible. To resolve these, had to carefully check and adjust the paths, ensuring they matched the expected structure within the project. Handling these errors was a key aspect of the debugging process, as it ensured that the website could correctly load resources like images, CSS files, and templates without issues.
 
-3. **Static Files Issues with .gitignore**  
-   While working on static files, I accidentally added critical files to `.gitignore`, which caused them to be excluded from commits. This mistake led to untidy and incomplete commits. After reverting these changes, I had to clean up the commit history to maintain a professional repository.
+3. **Javascript: Like and dislike buttons not functioning**  
+   At two points, I had encountered JavaScript issues where the like and dislike button counts were not functioning correctly. This issue stemmed from an error in the JavaScript code handling the button clicks, and also due to incorrect targeting of the DOM elements and issues with how the data was being sent and received from the server. Debugging this required inspecting the JavaScript logic, checking the view responses, and ensuring that the like/dislike count dynamically updated without page reloads. Resolving this improved user interaction on the website and allowed proper functionality for these features.
 
-4. **Heroku Deployment Forms Bug**  
-   A bug arose during Heroku deployment where forms were not rendering correctly. Clearing the cache resolved this issue.
+4. **Search functionality results**  
+   During development, I encountered an issue where the search functionality only returned results from the visa_app, excluding the articles from the visanews app. This was a result of the search view being limited to one app. To resolve this, I had to adjust the views to ensure they queried articles from both apps—visa_app and visanews. This involved modifying the search logic to combine the search results from both models and ensuring that titles, categories, and excerpts were matched across both apps, allowing for comprehensive search results across the entire site.
 
 5. **Styles not reflecting on deployed website**  
    A few times I had this issue where I applied some styles that would not reflect on the deployed website. After debugging, I realized it was due to not running `collectstatic` in the terminal to collect the latest CSS changes. After making CSS changes and running this command, this issue was completely resolved.
@@ -291,23 +291,41 @@ Testing documentation can be found [here.](TESTING.md)
 6. **Like and Dislike Buttons not Functioning**  
    At one point, stylesheet changes were not appearing even after refreshing the page. The solution was setting `DEBUG = True`, which allowed the changes to be reloaded correctly.
 
-7. **Mixed Content warning for Cloudinary Images**  
-   During development, Meta's restrictions blocked VPN access to Threads in the EU, which impacted testing and deployment workflows involving social media integrations. I did not include Threads in the social media links.
+7. **Edit and Delete buttons functionality for comments**  
+    I faced issues with the functionality of the "edit" and "delete" buttons for comments. Despite appearing correctly in the user interface, clicking them did not trigger the expected actions. The root cause was found in the views responsible for handling these actions. Specifically, the views were not receiving the correct comment ID, and the URLs were incorrectly mapped. To resolve this, I had to inspect both the views and the template files, ensuring that the comment ID was properly passed from the template to the view and that the correct URLs with trailing slashes were being used. This adjustment helped direct the forms correctly, allowing the views to process the requests properly. Once these fixes were applied, the buttons began functioning as intended, enabling users to edit or delete their comments.
 
-8. **Log Out of Admin Account When Testing Locally**  
-   A lesson learned was to always log out of the admin account when testing on localhost. Remaining logged in as an admin affected the behavior of allauth forms, leading to misleading results. The fix for this to log in using a different browser./
+8. **Code validation issues**  
+    I encountered several code validation issues that needed to be addressed to ensure the site's functionality, accessibility, and performance. These issues spanned across HTML, Python, and JavaScript files, and required thorough validation and debugging to resolve. Here's an overview of the challenges and fixes:
 
-9. **Server Error 500 on New Account Creation**  
-   Users encountered a server error (500) when attempting to create a new account. This required debugging to identify issues within the account creation logic and ensure smooth user onboarding.
+- HTML Validation
+I used tools like the W3C Markup Validation Service to validate my HTML files, which helped identify various errors, including:
 
-10. **Race Booking Event Model**  
-   Initially, I wanted to implement a separate login setup for race entrants who are not club members to prevent them from accessing the members' area. This required setting up a completely different account system. However, due to time constraints and project requirements, I decided to abandon this model. In practice, the club uses an external service provider for event registration and payment, which alleviates the need for this feature.
+Unclosed or misplaced tags, Missing alt attributes on images,Deprecated attributes and elements, Duplicate IDs.
+Python Validation
+
+- Python Validator
+To validate my Python code, I used CI Python linter. Common issues included:
+
+Indentation errors: Python relies on proper indentation, and I found several cases where my code had inconsistent spacing (mixing tabs and spaces). I corrected these errors to ensure consistent indentation throughout.
+Unused imports and variables: I encountered warnings about importing libraries that were not being used or declaring variables that never got referenced. I removed the unused imports and variables to clean up the code.
+Long lines and function complexity: PEP8 recommends keeping line lengths under 79 characters and reducing the complexity of functions. I refactored long lines into multiple shorter lines and broke complex functions into smaller, more manageable ones.
+
+- JavaScript Validation
+For this, I used JSHint and I validated my JavaScript files and fixed issues, including:
+
+Missing semicolons, Undefined variables, Outdated or inefficient code.
+
+All of these issues were resolved successfully.
 
  ### **Unfixed Bugs** ###
- **Console and Terminal error messages**
- 1. Mixed Content -
 
----
+ **Mixed content warnings in Console**
+ 
+ 1. I encountered persistent "Mixed Content" warnings in the browser console, specifically related to Cloudinary images. Despite ensuring that the image URLs used in your project were served over HTTPS, the warnings continued to appear. Mixed content warnings generally occur when a secure HTTPS page attempts to load resources (like images or scripts) over an insecure HTTP connection. Even though your Cloudinary URLs seemed to be correctly prefixed with HTTPS, the browser still flagged the requests as insecure.
+
+ **Uncaught TypeError: Cannot read properties of null (reading 'value') in like_dislike.js in console**
+
+ 2. This error occurred in the like_dislike.js file and is typically caused when the JavaScript tries to access an element with a specific id that does not exist on the page at the time of execution. The issue points to a missing element that the script is trying to interact with. Even though I tried changing the element's id, the error persisted.
 
 
 ## Technologies And Languages
