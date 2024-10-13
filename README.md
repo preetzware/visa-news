@@ -83,25 +83,51 @@ The main goal of VisaGlobal.News is to provide a reliable and up-to-date source 
 
 ## Design
 ### Colour Scheme
-The website features a calming and professional color palette that combines shades of blue, violet, and green with complementary neutrals. <br>
-Overall, this color scheme creates a professional and user-friendly environment, with subtle variations in hue and transparency to guide users' attention and enhance the visual appeal of the website.
-![Colour Scheme]()
+The VisaGlobal.News website features a soothing and professional color palette that blends shades of black, white, and blue, complemented by neutral tones. This combination creates a visually appealing and modern aesthetic, enhancing readability while conveying a sense of trust and reliability. The calming blue tones evoke feelings of tranquility and professionalism, making it an ideal choice for a travel news portal. 
+
+![Colour Scheme](./assets/readme-img/color-palette.png)
 
 ### Database Schema
-![database schema]()
 
-#### Models
-1. Allauth User Model
+![database schema](./assets/readme-img/schema_diagram.png)
 
-The User model is part of Django Allauth. The model comes with predefined fields as standard. Some of them are username, email, name, password, and more. This model is used for user authentication, hence why changes directly to this model are not advisory. The User model is connected to the Profile model with one to one relationship. 
+The database schema for VisaGlobal.News has been designed to well define the structure of the project's database, which includes managing data types and relationships between different entities like articles, comments, users. This structure is essential for organizing your data effectively. The Models section below provides more details about the models themselves and their relationships. 
 
-2. visa_app(Home Page) Model
+## Models
 
-The Profile model is a custom custom-created model to handle the user profile details. Signals are used to reflect the changes between the User and Profile models. For example, if the Profile gets updated or deleted the changes will apply to the user model as well. 
+### 1. visa_app(Home Page) Model
 
-3. Visanews Model
+The visa_app is designed to manage travel-related articles, allowing users to create, read, update, and delete content efficiently. The main models in this app include:
 
-The listing model is connected to the Profile with a ForeignKey field - owner. It is furthermore connected to the CarMake and CarModel models via ForeignKey field again
+**Article:** Represents an individual article with attributes such as title, slug, author, excerpt, content, and published_at. It establishes a relationship with the User model, where each article is linked to a specific author. Additionally, it features many-to-many relationships for likes and dislikes, enabling user interactions. Articles can also be categorized using the Category model, which allows users to filter content based on specific topics.
+
+**Category:** This model categorizes articles into distinct groups, making it easier for users to navigate through related content. Each category has a name and a slug for URL-friendly identification.
+
+**Comment:** Users can comment on articles, and each comment is linked to both the Article it belongs to and the User who authored it. The approved field indicates whether a comment is visible to other users.
+
+### 2. Visanews Model
+
+The visanews app mirrors the functionality of visa_app but focuses on visa-related news articles. Its structure includes:
+
+**VisanewsArticle:** Similar to the Article model, it contains fields such as title, slug, author, content, and published_at. It also includes relationships with the User model and the Category model. The many-to-many relationships for likes and dislikes facilitate user engagement.
+
+**Category:** The Category model in visanews serves the same purpose as in visa_app, allowing articles to be grouped for easier access.
+
+**Comment:** This model allows users to leave comments on visa news articles. Each comment is associated with a specific VisanewsArticle and the User who posted it. An additional parent field supports threaded comments, enabling users to reply to specific comments.
+
+### 3. Allauth User Model
+
+The User model is part of Django Allauth package and includes models such as EmailAddress, EmailConfirmation, SocialAccount, SocialApp, and SocialToken. These models help manage how users log in, including verifying their email addresses and connecting social media accounts. These models are linked to the User model, making sure that each user's email verification and social media account information are correctly associated with their profile.
+
+### 4. Django's Built-in Models
+
+- The schema encompasses various built-in Django models, including Group, Permission, ContentType, Session, as well as models from the django.contrib.auth and django.contrib.admin applications. 
+- These models facilitate functionalities such as managing user permissions, handling session data, and providing information about content types.
+- While the LogEntry model is utilized for monitoring administrative actions performed within the Django admin interface.
+
+### 5. Permissions and Groups:
+
+The Permission and Group models collaborate to regulate access within the application. Users can be placed in groups, and these groups can be granted specific permissions that determine what areas of the application they can access.
 
 
 ### Fonts
